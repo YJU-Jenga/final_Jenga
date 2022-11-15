@@ -56,7 +56,7 @@
                                                             value="{{ $item->quantity }}"
                                                             class="w-16 h-6 text-center text-gray-800 border border-blue-600 rounded outline-none" />
                                                         <button
-                                                            class="px-4 mt-1 py-1.5 text-sm rounded rounded shadow text-violet-100 bg-violet-500">Update</button>
+                                                            class="px-4 mt-1 py-1.5 text-sm rounded shadow text-violet-100 bg-violet-500">Update</button>
                                                     </form>
                                                 </div>
                                             </div>
