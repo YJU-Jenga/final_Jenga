@@ -21,8 +21,8 @@
                                     <th class="hidden md:table-cell"></th>
                                     <th class="text-left">이름</th>
                                     <th class="pl-5 text-left lg:text-right lg:pl-0">
-                                        <span class="lg:hidden" title="Quantity">Qtd</span>
-                                        <span class="hidden lg:inline">Quantity</span>
+                                        <span class="lg:hidden" title="Quantity">수량</span>
+                                        <span class="hidden lg:inline">수량</span>
                                     </th>
                                     <th class="hidden text-right md:table-cell"> 가격</th>
                                     <th class="hidden text-right md:table-cell"> 삭제 </th>
