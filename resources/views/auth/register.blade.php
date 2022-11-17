@@ -31,10 +31,7 @@
             <div class="mt-4">
                 <x-input-label for="password" :value="__('비밀번호')" />
 
-                <x-text-input id="password" class="block w-full mt-1"
-                                type="password"
-                                name="password"
-                                required autocomplete="new-password" />
+                <x-text-input id="password" class="block w-full mt-1" type="password" name="password" required autocomplete="new-password" />
 
                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
             </div>
@@ -43,9 +40,7 @@
             <div class="mt-4">
                 <x-input-label for="password_confirmation" :value="__('비밀번호 확인')" />
 
-                <x-text-input id="password_confirmation" class="block w-full mt-1"
-                                type="password"
-                                name="password_confirmation" required />
+                <x-text-input id="password_confirmation" class="block w-full mt-1" type="password" name="password_confirmation" required />
 
                 <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
             </div>
@@ -53,7 +48,7 @@
             <div class="mt-4">
                 <x-input-label for="address" :value="__('주소')" />
 
-                <x-text-input id="address" class="block w-full mt-1" type="text" name="address" :value="old('address')" required autofocus />
+                <x-text-input id="address" class="block w-full mt-1" type="text" name="address" :value="old('address')" autofocus />
 
                 <x-input-error :messages="$errors->get('address')" class="mt-2" />
             </div>
@@ -61,7 +56,7 @@
             <div class="mt-4">
                 <x-input-label for="tel" :value="__('전화번호')" />
 
-                <x-text-input id="tel" class="block w-full mt-1" type="tel" name="tel" :value="old('tel')" required autofocus />
+                <x-text-input id="tel" class="block w-full mt-1" type="tel" name="tel" :value="old('tel')" autofocus />
 
                 <x-input-error :messages="$errors->get('tel')" class="mt-2" />
             </div>
