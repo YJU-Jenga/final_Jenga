@@ -11,13 +11,12 @@
             {{ __('상품') }}
         </h2>
     </x-slot>
-    <div class="container px-12 py-8 mx-auto">
-        <h1 class="py-5 text-3xl font-bold">딸기인형</h1>
+    <div class="container flex px-12 py-8 mx-auto space-x-4">
 
         {{-- image slider --}}
         {{-- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --}}
-        
-        <div class="container">
+
+        <div class="container flex">
             <div class="swiper mySwiper w-96 h-96">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
@@ -42,7 +41,8 @@
         {{-- options --}}
         {{-- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --}}
 
-        <div class="container">
+        <div class="container ">
+            <h1 class="py-5 text-3xl font-bold">딸딸기인형</h1>
             <select name="성별" id="sex" class="rounded-lg">
                 <option value="blank">- [필수]옵션을 선택해 주세요 -</option>
                 <optgroup label="------------------------">
@@ -50,34 +50,19 @@
                     <option value="female">여</option>
                 </optgroup>
             </select>
-        </div>
-
-        {{-- total price --}}
-        {{-- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --}}
-
-        {{-- @if ($message = Session::get('success'))
-                <div class="p-4 mb-3 bg-green-400 rounded">
-                    <p class="text-green-800">{{ $message }}</p>
-                </div>
-            @endif --}}
-        <div class="container mx-auto">
-            <div class="flex my-6">
-                <div class="flex flex-col w-full p-8 text-gray-800 bg-white shadow-lg pin-r pin-y md:w-4/5 lg:w-4/5">
-                    총 상품금액(수량) : 0원(0개)
+            <div class="container mx-auto">
+                <div class="flex my-6">
+                    <div
+                        class="flex flex-col w-full p-8 text-gray-800 bg-white shadow-lg pin-r pin-y md:w-4/5 lg:w-4/5">
+                        총 상품금액(수량) : 0원(0개)
+                    </div>
                 </div>
             </div>
-        </div>
-
-        {{-- 구매, 장바구니 버튼 --}}
-        {{-- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --}}
-
-        <div class="container">
             <button
-            class="text-gray-900 bg-white border border-gray-300 focus:outline-none focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">주문</button>
-        <button
-            class="text-gray-900 bg-white border border-gray-300 focus:outline-none focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">장바구니</button>
+                class="text-gray-900 bg-white border border-gray-300 focus:outline-none focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">주문</button>
+            <button
+                class="text-gray-900 bg-white border border-gray-300 focus:outline-none focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">장바구니</button>
         </div>
-
     </div>
 
     @push('scripts')
@@ -100,3 +85,10 @@
     @endpush
 
 </x-app-layout>
+
+{{-- 격리 --}}
+{{-- @if ($message = Session::get('success'))
+                <div class="p-4 mb-3 bg-green-400 rounded">
+                    <p class="text-green-800">{{ $message }}</p>
+                </div>
+            @endif --}}
