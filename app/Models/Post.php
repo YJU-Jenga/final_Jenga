@@ -34,4 +34,4 @@ class Post extends Model
     
 }
 
-// 동해물과 백두산이 마르고 닳도록
+// 동해물과 백두산이 마르고
