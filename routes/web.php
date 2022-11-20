@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\QnaController;
-use App\Http\Controllers\TaskController;
+use App\Http\Controllers\BoardController;
 
 
 /*
@@ -29,12 +29,9 @@ Route::post('update-cart', [CartController::class, 'updateCart'])->name('cart.up
 Route::post('remove', [CartController::class, 'removeCart'])->name('cart.remove');
 Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear');
 
-Route::get('tasks', [TaskController::class, 'index'])->name('tasks.index');
-Route::get('tasks/create', [TaskController::class, 'create']);
-Route::post('tasks', [TaskController::class, 'store']);
-// Route::get('/tasks', 'App\Http\Controllers\TaskController@index'); // 메인페이지
-// Route::get('/tasks/create', 'App\Http\Controllers\TaskController@create'); // 글 작성
-// Route::post('/tasks', 'App\Http\Controllers\TaskController@store');
+Route::get('boards', [BoardController::class, 'index'])->name('boards.index');
+Route::get('boards/create', [BoardController::class, 'create']);
+Route::post('boards', [BoardController::class, 'store']);
 
 Route::get('/', function () {
     return view('welcome');

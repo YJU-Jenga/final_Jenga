@@ -14,7 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('boards', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->text('memo');
+            $table->text('creator_name');
+            $table->integer('grp')->nullable();
+            $table->integer('sort')->nullable();
+            $table->integer('depth')->nullable();
             $table->timestamps();
         });
     }
