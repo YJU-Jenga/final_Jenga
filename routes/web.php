@@ -23,6 +23,15 @@ use App\Http\Controllers\BoardController;
 // });
 
 Route::get('products', [ProductController::class, 'productList'])->name('products.list');
+Route::get('product-register', [ProductController::class, 'create'])->name('product.add');
+Route::get('product-detail/{type}', [ProductController::class, 'productDetail'])->name('products.detail');
+// Route::controller(ProductController::class)->group(function(){
+//     Route::get('/image-upload', 'index')->name('image.form');
+//     Route::post('/upload-image', 'storeImage')->name('image.store');
+// });
+Route::post('products', [ProductController::class, 'store'])->name('products.store');
+
+
 Route::get('cart', [CartController::class, 'cartList'])->name('cart.list');
 Route::post('cart', [CartController::class, 'addToCart'])->name('cart.store');
 Route::post('update-cart', [CartController::class, 'updateCart'])->name('cart.update');
@@ -35,7 +44,7 @@ Route::post('boards', [BoardController::class, 'store']);
 
 Route::get('/', function () {
     return view('welcome');
-})->name('/');;
+})->name('/');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
