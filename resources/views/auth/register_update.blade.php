@@ -11,7 +11,7 @@
             </a> -->
         </x-slot>
 
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('register_update') }}">
             @csrf
 
             <!-- Name -->
@@ -24,13 +24,13 @@
             </div>
 
             <!-- Email Address -->
-            <div class="mt-4">
+            <!-- <div class="mt-4">
                 <x-input-label for="email" :value="__('Email')" />
 
                 <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" value="{{Auth::user()->email}}" required readonly onfocus="this.blur();"/>
 
                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
-            </div>
+            </div> -->
 
             <!-- Phone -->
             <div class="mt-4">
