@@ -6,11 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\CanResetPassword;
 use Laravel\Sanctum\HasApiTokens;
-use App\Notifications\ResetPasswordNotification;
-
-
 
 class User extends Authenticatable
 {
@@ -55,16 +51,11 @@ class User extends Authenticatable
         return $this->hasMany('\App\Models\Comment');
     }
 
-    /**
-    * Send a password reset notification to the user.
-    *
-    * @param  string  $token
-    * @return void
-    */
-    public function sendPasswordResetNotification($token)
-    {
-        $url = 'https://example.com/reset-password?token='.$token;
+    public function order () {
+        return $this->hasMany('\App\Models\Order');
+    }
 
-        $this->notify(new ResetPasswordNotification($url));
+    public function cart () {
+        return $this->hasOne('\App\Models\Cart');
     }
 }

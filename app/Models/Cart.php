@@ -13,4 +13,12 @@ class Cart extends Model
         'count',
         'total_price',
     ];
+
+    public function user() {
+        return $this->belongsTo('\App\Models\User');
+    }
+    
+    public function product() {
+        return $this->hasMany('\App\Models\Product');
+    }
 }

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('board_id')->constrained('boards');
             $table->string('title');
             $table->string('password', 4)->nullable();
             $table->string('content');
