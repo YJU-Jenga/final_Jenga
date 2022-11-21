@@ -26,11 +26,11 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('boards.index')" :active="request()->routeIs('boards.index')">
                         {{ __('게시판') }}
                     </x-nav-link>
-                </div>
+                </div> --}}
                 <a href="{{ route('cart.list') }}" class="flex items-center ml-12 ">
                     {{ __('장바구니') }}
                     <svg class="w-5 h-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

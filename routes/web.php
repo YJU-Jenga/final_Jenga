@@ -38,10 +38,6 @@ Route::post('update-cart', [CartController::class, 'updateCart'])->name('cart.up
 Route::post('remove', [CartController::class, 'removeCart'])->name('cart.remove');
 Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear');
 
-Route::get('boards', [BoardController::class, 'index'])->name('boards.index');
-Route::get('boards/create', [BoardController::class, 'create']);
-Route::post('boards', [BoardController::class, 'store']);
-
 Route::get('/', function () {
     return view('welcome');
 })->name('/');
@@ -53,5 +49,32 @@ Route::get('/dashboard', function () {
 Route::get('/mypage', function () {
     return view('mypage');
 })->middleware(['auth', 'verified'])->name('mypage');
+
+Route::get('/item_use', function () {
+    return view('board.item_use');
+})->name('item_use');
+
+
+Route::get('/write_item_use', [ItemUsePostController::class, 'create'])->name('write_item_use');
+
+Route::post('/write_item_use', [ItemUsePostController::class, 'store'])->name('write_item_use');
+
+Route::get('/write_q&a', [QAController::class, 'create'])->name('write_q&a');
+
+Route::post('/write_q&a', [QAController::class, 'store'])->name('write_q&a');
+
+Route::get('/write_product_inquiry', [ProductInquiryController::class, 'create'])->name('write_product_inquiry');
+
+Route::post('/write_product_inquiry', [ProductInquiryController::class, 'store'])->name('write_product_inquiry');
+
+
+Route::get('/product_inquiry', function () {
+    return view('board.product_inquiry');
+})->name('product_inquiry');
+
+Route::get('/q&a', function () {
+    return view('board.q&a');
+})->name('q&a');
+
 
 require __DIR__.'/auth.php';
