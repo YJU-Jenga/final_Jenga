@@ -1,3 +1,8 @@
+<?php
+    use \App\Models\User;
+
+?>
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -34,7 +39,7 @@
                                     style="display: none;"
                                     @click="open = false">
                                 <div class="rounded-md ring-1 ring-black ring-opacity-5 py-1 bg-white">
-                                    총 게시글 수 {{ \App\Models\User::find(1)->post->count() }}
+                                    총 게시글 수 {{ User::find(Auth::user()->id)->post->count() }}
                                     <table>
                                         <th>제목</th>
                                         <th>작성자</th>
@@ -42,10 +47,10 @@
                                         <th>작성일</th>
                                         <th>답변여부</th>
         
-                                    @foreach (\App\Models\User::find(1)->post as $post)
+                                    @foreach (User::find(Auth::user()->id)->post as $post)
                                     <tr>
                                         <td>{{ $post->title }}</td>
-                                        <td>{{ $post->user_id }}</td>
+                                        <td>{{ User::find($post->user_id)->name }}</td>
                                         <td>{{ $post->hit }}</td>
                                         <td>{{ $post->created_at }}</td>
                                         <td>{{ $post->state? '답변 완료' : '답변 대기' }}</td>
