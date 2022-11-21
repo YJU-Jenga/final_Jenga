@@ -25,4 +25,16 @@ Route::get('/mypage', function () {
     return view('mypage');
 })->middleware(['auth', 'verified'])->name('mypage');
 
+Route::get('/item_use', function () {
+    return view('board.item_use');
+})->name('item_use');
+
+Route::get('/product_inquiry', function () {
+    return view('board.product_inquiry');
+})->name('product_inquiry');
+
+Route::get('/q&a', function () {
+    return view('board.q&a');
+})->name('q&a');
+
 require __DIR__.'/auth.php';

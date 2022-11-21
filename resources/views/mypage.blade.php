@@ -17,7 +17,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <a href="">
+                <a href="{{ route('register_update') }}">
                 <div class="p-6 bg-white border-b border-gray-200">
                     회원 정보 수정
                 </div>
@@ -40,7 +40,7 @@
                                     ?>
                                     <!-- 총 게시글 수 {{ $posts->count() }} -->
                                     @if($posts->count() > 0)
-                                    <table>
+                                    <table class="table-auto">
                                         <th>제목</th>
                                         <th>작성자</th>
                                         <th>조회수</th>
@@ -86,7 +86,7 @@
                                     ?>
                                     <!-- 총 게시글 수 {{ $posts->count() }} -->
                                     @if($posts->count() > 0)
-                                    <table>
+                                    <table class="table-auto">
                                         <th>제목</th>
                                         <th>작성자</th>
                                         <th>조회수</th>
@@ -129,7 +129,7 @@
                                     ?>
                                     <!-- 총 게시글 수 {{ $posts->count() }} -->
                                     @if($posts->count() > 0)
-                                    <table>
+                                    <table class="table-auto">
                                         <th>제목</th>
                                         <th>작성자</th>
                                         <th>조회수</th>

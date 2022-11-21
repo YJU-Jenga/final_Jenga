@@ -22,6 +22,11 @@ class RegisteredUserController extends Controller
     {
         return view('auth.register');
     }
+    
+    public function up()
+    {
+        return view('auth.register_update');
+    }
 
     /**
      * Handle an incoming registration request.
@@ -52,5 +57,16 @@ class RegisteredUserController extends Controller
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
+    }
+
+    public function update(Request $request) {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'phone' => ['required', 'regex:/[0-9]{3}-[0-9]{4}-[0-9]{4}/'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+
+        
     }
 }
