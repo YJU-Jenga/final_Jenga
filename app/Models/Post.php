@@ -33,5 +33,3 @@ class Post extends Model
     }
     
 }
-
-// 동해물과 백두산이 마르고 마르고 닳아버린 운동장에서 농구함.

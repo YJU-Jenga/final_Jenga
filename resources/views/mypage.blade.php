@@ -18,7 +18,10 @@
                     주문 내역 확인
                 </div>
                 <div class="p-6 bg-white border-b border-gray-200">
-                    {{ \App\Models\User::find(1)->post[0]['title'] }}
+                    <!-- {{ \App\Models\User::find(1)->post[0]['title'] }} -->
+                    @foreach (\App\Models\User::find(1)->post as $post)
+                        <p>게시글 {{ $post->id }}</p>
+                    @endforeach
                 </div>
             </div>
         </div>
