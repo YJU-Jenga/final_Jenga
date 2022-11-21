@@ -21,10 +21,16 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
+        // sail aritsan db:seed
+        // php aritsan db:seed
+        // 시딩 할 때  유저가 필요함
+        // 게시판을 한 번 만들고나서 주석으로 바꾸기
+        
         // 게시판 생성
         // $this->call(BoardsTableSeeder::class);
 
         // 게시글 생성
         $this->call(PostsTableSeeder::class);
+
     }
 }

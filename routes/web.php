@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ItemUsePostController;
+use App\Http\Controllers\QAController;
+use App\Http\Controllers\ProductInquiryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +31,20 @@ Route::get('/mypage', function () {
 Route::get('/item_use', function () {
     return view('board.item_use');
 })->name('item_use');
+
+
+Route::get('/write_item_use', [ItemUsePostController::class, 'create'])->name('write_item_use');
+
+Route::post('/write_item_use', [ItemUsePostController::class, 'store'])->name('write_item_use');
+
+Route::get('/write_q&a', [QAController::class, 'create'])->name('write_q&a');
+
+Route::post('/write_q&a', [QAController::class, 'store'])->name('write_q&a');
+
+Route::get('/write_product_inquiry', [ProductInquiryController::class, 'create'])->name('write_product_inquiry');
+
+Route::post('/write_product_inquiry', [ProductInquiryController::class, 'store'])->name('write_product_inquiry');
+
 
 Route::get('/product_inquiry', function () {
     return view('board.product_inquiry');
