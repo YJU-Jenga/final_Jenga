@@ -11,7 +11,7 @@
   ->get();
 
   $page = 10;
-  $posts_page = DB::table('posts')->select(['posts.title', 'users.name', 'posts.hit', 'posts.created_at', 'posts.state'])
+  $posts_page = DB::table('posts')->select(['posts.title', 'users.name', 'posts.hit', 'posts.created_at', 'posts.state', 'posts.secret', 'posts.password'])
   ->leftJoin('users', 'posts.user_id', '=', 'users.id')
   ->where('posts.user_id', '=', Auth::user()->id)
   ->where('posts.board_id', '=', 1)
@@ -38,13 +38,21 @@
                   <th>작성일</th>
                   <th>답변여부</th>
                 @foreach ($posts_page as $post)
+                @if($post->secret)
+                  <tr>  
+                    <td>🔒︎{{ $post->title }}</td>
+                    <td>{{ $post->name }}</td>
+                    <td>{{ $post->hit }}</td>
+                    <td>{{ $post->created_at }}</td>
+                  </tr>
+                @else
                   <tr>  
                     <td>{{ $post->title }}</td>
                     <td>{{ $post->name }}</td>
                     <td>{{ $post->hit }}</td>
                     <td>{{ $post->created_at }}</td>
-                    <td>{{ $post->state? '답변 완료' : '답변 대기' }}</td>
                   </tr>
+                @endif
                 @endforeach
                 </table>
                 <div style="text-align: center;">
