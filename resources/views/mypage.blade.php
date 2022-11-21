@@ -5,7 +5,7 @@
     // 1 = 상품 문의 게시판
     // 2 = Q & A 게시판
     // 3 = 후기 게시판
-    $query_string= $_SERVER['QUERY_STRING'];
+    $query_string= $_SERVER['REQUEST_URI'];
 ?>
 
 <x-app-layout>
@@ -24,7 +24,7 @@
                 </div>
                 </a>
                 <div class="p-6 bg-white border-b border-gray-200">
-                @if(strpos($query_string, "=") == 20)
+                @if(strpos($query_string, "=") == 28)
                 <div class="block" x-data="{ open: true }" @click.outside="open = false" @close.stop="open = false">
                 @else
                 <div class="block" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
@@ -97,7 +97,7 @@
                     주문 내역 확인
                 </div>
                 <div class="p-6 bg-white border-b border-gray-200">
-                    @if(strpos($query_string, "=") == 10)
+                    @if(strpos($query_string, "=") == 18)
                     <div class="block" x-data="{ open: true }" @click.outside="open = false" @close.stop="open = false">
                     @else
                     <div class="block" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
@@ -167,7 +167,7 @@
                     </div>
                 </div>
                 <div class="p-6 bg-white border-b border-gray-200">
-                    @if(strpos($query_string, "=") == 13)
+                    @if(strpos($query_string, "=") == 21)
                     <div class="block" x-data="{ open: true }" @click.outside="open = false" @close.stop="open = false">
                     @else
                     <div class="block" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">

@@ -5,7 +5,6 @@
 <?php
   $posts = DB::table('posts')->select(['posts.title', 'users.name', 'posts.hit', 'posts.created_at'])
   ->leftJoin('users', 'posts.user_id', '=', 'users.id')
-  ->where('posts.user_id', '=', Auth::user()->id)
   ->where('posts.board_id', '=', 3)
   ->orderBy('posts.created_at','desc')
   ->get();
@@ -13,7 +12,6 @@
   $page = 10;
   $posts_page = DB::table('posts')->select(['posts.title', 'users.name', 'posts.hit', 'posts.created_at', 'posts.state', 'posts.secret', 'posts.password'])
   ->leftJoin('users', 'posts.user_id', '=', 'users.id')
-  ->where('posts.user_id', '=', Auth::user()->id)
   ->where('posts.board_id', '=', 3)
   ->orderBy('posts.created_at','desc')
   ->paginate($page);
