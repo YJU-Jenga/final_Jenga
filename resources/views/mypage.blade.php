@@ -19,9 +19,23 @@
                 </div>
                 <div class="p-6 bg-white border-b border-gray-200">
                     <!-- {{ \App\Models\User::find(1)->post[0]['title'] }} -->
+                    <table>
+                        <th>제목</th>
+                        <th>작성자</th>
+                        <th>조회수</th>
+                        <th>작성일</th>
+                        <th>답변여부</th>
+                        
                     @foreach (\App\Models\User::find(1)->post as $post)
-                        <p>게시글 {{ $post->id }}</p>
+                    <tr>
+                        <td>{{ $post->title }}</td>
+                        <td>{{ $post->user_id }}</td>
+                        <td>{{ $post->hit }}</td>
+                        <td>{{ $post->created_at }}</td>
+                        <td>{{ $post->state? '답변 완료' : '답변 대기' }}</td>
+                    </tr>
                     @endforeach
+                    </table>
                 </div>
             </div>
         </div>
