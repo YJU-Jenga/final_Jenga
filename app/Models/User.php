@@ -50,4 +50,12 @@ class User extends Authenticatable
     public function comment () {
         return $this->hasMany('\App\Models\Comment');
     }
+
+    public function order () {
+        return $this->hasMany('\App\Models\Order');
+    }
+
+    public function cart () {
+        return $this->hasOne('\App\Models\Cart');
+    }
 }

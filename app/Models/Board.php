@@ -17,3 +17,7 @@ class Board extends Model
         return $this->hasMany('\App\Models\Post');
     }
 }
+
+// 1 = 상품 문의 게시판
+// 2 = Q & A 게시판
+// 3 = 후기 게시판

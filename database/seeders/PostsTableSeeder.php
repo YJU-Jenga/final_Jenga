@@ -18,6 +18,7 @@ class PostsTableSeeder extends Seeder
         for($i = 0; $i < 10; $i++) {
             $post = [
                 'user_id' => 1,
+                'board_id' => 2,
                 'title' => '제목'.$i,
                 'content' => '내용'.$i,
                 'secret' => 0,
@@ -28,3 +29,7 @@ class PostsTableSeeder extends Seeder
         }
     }
 }
+
+// 1 = 상품 문의 게시판
+// 2 = Q & A 게시판
+// 3 = 후기 게시판

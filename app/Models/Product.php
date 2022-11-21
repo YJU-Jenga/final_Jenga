@@ -17,4 +17,12 @@ class Product extends Model
         'type',
         'img',
     ];
+
+    public function cart() {
+        return $this->belongsTo('\App\Models\Cart');
+    }
+
+    public function order() {
+        return $this->belongsTo('\App\Models\Order');
+    }
 }
