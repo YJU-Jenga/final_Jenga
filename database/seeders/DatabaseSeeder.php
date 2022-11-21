@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         // 게시판 생성
-        $this->call(BoardsTableSeeder::class);
+        // $this->call(BoardsTableSeeder::class);
 
         // 게시글 생성
         $this->call(PostsTableSeeder::class);
