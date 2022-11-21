@@ -20,15 +20,15 @@
             <div class="swiper mySwiper w-96 h-96">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <img class="object-cover w-96 h-96"
+                        <img class="object-cover w-full h-96"
                             src="https://cdn.sisaweek.com/news/photo/202103/142725_136401_837.jpg" alt="image" />
                     </div>
                     <div class="swiper-slide">
-                        <img class="object-cover w-96 h-96"
+                        <img class="object-cover w-full h-96"
                             src="https://cdn.sisaweek.com/news/photo/202103/142725_136401_837.jpg" alt="image" />
                     </div>
                     <div class="swiper-slide">
-                        <img class="object-cover w-96 h-96"
+                        <img class="object-cover w-full h-96"
                             src="https://cdn.sisaweek.com/news/photo/202103/142725_136401_837.jpg" alt="image" />
                     </div>
                 </div>
@@ -93,3 +93,4 @@
                     <p class="text-green-800">{{ $message }}</p>
                 </div>
             @endif --}}
+{{-- https://cdn.sisaweek.com/news/photo/202103/142725_136401_837.jpg --}}

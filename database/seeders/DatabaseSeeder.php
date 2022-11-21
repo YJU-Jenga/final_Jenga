@@ -14,12 +14,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(ProductSeeder::class);
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        // 게시판 생성
+        $this->call(BoardsTableSeeder::class);
+
+        // 게시글 생성
+        $this->call(PostsTableSeeder::class);
     }
 }

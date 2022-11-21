@@ -24,6 +24,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'phone',
         'password',
     ];
 
@@ -45,6 +46,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function post () {
+        return $this->hasMany('\App\Models\Post');
+    }
+
+    public function comment () {
+        return $this->hasMany('\App\Models\Comment');
+    }
+
     /**
     * Send a password reset notification to the user.
     *

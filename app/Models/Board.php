@@ -8,5 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Board extends Model
 {
     use HasFactory;
-    protected $table = 'boards';
+
+    protected $fillable = [
+        'board_name',
+    ];
+
+    public function post () {
+        return $this->hasMany('\App\Models\Post');
+    }
 }

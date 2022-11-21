@@ -27,11 +27,23 @@
                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
             </div>
 
+            <!-- Phone -->
+            <div class="mt-4">
+                <x-input-label for="phone" :value="__('전화번호')" />
+
+                <x-text-input id="phone" class="block w-full mt-1" type="tel" name="phone" :value="old('phone')" required />
+
+                <x-input-error :messages="$errors->get('phone')" class="mt-2" />
+            </div>
+
             <!-- Password -->
             <div class="mt-4">
                 <x-input-label for="password" :value="__('비밀번호')" />
 
-                <x-text-input id="password" class="block w-full mt-1" type="password" name="password" required autocomplete="new-password" />
+                <x-text-input id="password" class="block w-full mt-1"
+                                type="password"
+                                name="password"
+                                required autocomplete="new-password" />
 
                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
             </div>
@@ -40,34 +52,20 @@
             <div class="mt-4">
                 <x-input-label for="password_confirmation" :value="__('비밀번호 확인')" />
 
-                <x-text-input id="password_confirmation" class="block w-full mt-1" type="password" name="password_confirmation" required />
+                <x-text-input id="password_confirmation" class="block w-full mt-1"
+                                type="password"
+                                name="password_confirmation" required />
 
                 <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-            </div>
-            <!-- address -->
-            <div class="mt-4">
-                <x-input-label for="address" :value="__('주소')" />
-
-                <x-text-input id="address" class="block w-full mt-1" type="text" name="address" :value="old('address')" autofocus />
-
-                <x-input-error :messages="$errors->get('address')" class="mt-2" />
-            </div>
-            <!-- tel -->
-            <div class="mt-4">
-                <x-input-label for="tel" :value="__('전화번호')" />
-
-                <x-text-input id="tel" class="block w-full mt-1" type="tel" name="tel" :value="old('tel')" autofocus />
-
-                <x-input-error :messages="$errors->get('tel')" class="mt-2" />
             </div>
 
             <div class="flex items-center justify-end mt-4">
                 <a class="text-sm text-gray-600 underline hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('이미 계정이 있습니까?') }}
+                    {{ __('이미 가입하셨나요?') }}
                 </a>
 
                 <x-primary-button class="ml-4">
-                    {{ __('Register') }}
+                    {{ __('회원가입') }}
                 </x-primary-button>
             </div>
         </form>
