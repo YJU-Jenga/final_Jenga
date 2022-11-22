@@ -44,11 +44,11 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <x-primary-button class="ml-4">
+                <x-primary-button class="ml-4" type="submit">
                     {{ __('작성') }}
                 </x-primary-button>
             </div>
-        </div>
+          </form>
       </div>
     </div>
   </div>

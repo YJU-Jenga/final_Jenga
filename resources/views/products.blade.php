@@ -14,7 +14,7 @@
                     </div>
                     <div class="px-5 py-3">
                         <h3 class="text-gray-700 uppercase">{{ $product->name }}</h3>
-                        <span class="mt-2 text-gray-500">{{ $product->price }}₩</span>
+                        <span class="mt-2 font-bold text-gray-500">{{ $product->price }}₩</span>
                         <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" value="{{ $product->id }}" name="id">

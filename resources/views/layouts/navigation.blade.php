@@ -17,20 +17,20 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    <x-nav-link :href="route('item_use')" :active="request()->routeIs('item_use')">
+                        {{ __('사용 후기') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    <x-nav-link :href="route('product_inquiry')" :active="request()->routeIs('product_inquiry')">
+                        {{ __('상품 문의') }}
                     </x-nav-link>
                 </div>
-                {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('boards.index')" :active="request()->routeIs('boards.index')">
-                        {{ __('게시판') }}
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('q&a')" :active="request()->routeIs('q&a')">
+                        {{ __('Q&A') }}
                     </x-nav-link>
-                </div> --}}
+                </div>
                 <a href="{{ route('cart.list') }}" class="flex items-center ml-12 ">
                     {{ __('장바구니') }}
                     <svg class="w-5 h-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

@@ -5,18 +5,18 @@
 <?php
   $posts = DB::table('posts')->select(['posts.title', 'users.name', 'posts.hit', 'posts.created_at', 'posts.state'])
   ->leftJoin('users', 'posts.user_id', '=', 'users.id')
-  ->where('posts.user_id', '=', Auth::user()->id)
-  ->where('posts.board_id', '=', 1)
+  ->where('posts.board_id', '=', 2)
   ->orderBy('posts.created_at','desc')
   ->get();
-
+  
   $page = 10;
   $posts_page = DB::table('posts')->select(['posts.title', 'users.name', 'posts.hit', 'posts.created_at', 'posts.state', 'posts.secret', 'posts.password'])
   ->leftJoin('users', 'posts.user_id', '=', 'users.id')
-  ->where('posts.user_id', '=', Auth::user()->id)
-  ->where('posts.board_id', '=', 1)
+  ->where('posts.board_id', '=', 2)
   ->orderBy('posts.created_at','desc')
   ->paginate($page);
+
+  
 ?>
 
 <x-app-layout>
@@ -25,7 +25,6 @@
         {{ __('총 게시글 수 ') }} {{$posts->count()}} | {{$posts_page->currentPage()}} / {{$posts_page->lastPage()}}
     </h2>
   </x-slot>
-
   <div class="py-6">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
@@ -76,7 +75,7 @@
                 </div>
             </div>
 
-            <a href="{{ route('write_product_inquiry') }}">
+            <a href="{{ route('write_q&a') }}">
               <div class="flex items-center justify-end mt-4">
                   <x-primary-button class="ml-4">
                       {{ __('작성') }}

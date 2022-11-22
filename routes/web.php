@@ -5,6 +5,8 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\QnaController;
 use App\Http\Controllers\BoardController;
+use App\Http\Controllers\ProductInquiryController;
+use App\Http\Controllers\QAController;
 
 
 /*
@@ -18,17 +20,9 @@ use App\Http\Controllers\BoardController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Route::get('products', [ProductController::class, 'productList'])->name('products.list');
 Route::get('product-register', [ProductController::class, 'create'])->name('product.add');
 Route::get('product-detail/{type}', [ProductController::class, 'productDetail'])->name('products.detail');
-// Route::controller(ProductController::class)->group(function(){
-//     Route::get('/image-upload', 'index')->name('image.form');
-//     Route::post('/upload-image', 'storeImage')->name('image.store');
-// });
 Route::post('products', [ProductController::class, 'store'])->name('products.store');
 
 
@@ -39,7 +33,7 @@ Route::post('remove', [CartController::class, 'removeCart'])->name('cart.remove'
 Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear');
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('main');
 })->name('/');
 
 Route::get('/dashboard', function () {

@@ -80,14 +80,20 @@
 
                             </tbody>
                         </table>
-                        <div>
+                        <div class="text-xl font-bold">
                             총: {{ Cart::getTotal() }}₩
                         </div>
                         <div>
                             <form action="{{ route('cart.clear') }}" method="POST">
                                 @csrf
-                                <button class="px-6 py-2 text-sm text-red-100 bg-red-500 rounded shadow">장바구니
+                                <button class="px-6 py-2 text-red-100 bg-red-500 rounded shadow text-l">장바구니
                                     비우기</button>
+                            </form>
+                        </div>
+                        <div>
+                            <form action="{{ route('cart.clear') }}" method="POST">
+                                @csrf
+                                <button class="px-6 py-2 text-red-100 bg-red-500 rounded shadow text-l">주문</button>
                             </form>
                         </div>
 
