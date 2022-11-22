@@ -52,17 +52,17 @@ Route::get('/item_use', function () {
 })->name('item_use');
 
 
-Route::get('/write_item_use', [ItemUsePostController::class, 'create'])->name('write_item_use');
+Route::get('/write_item_use', [ItemUsePostController::class, 'create'])->middleware(['auth', 'verified'])->name('write_item_use');
 
-Route::post('/write_item_use', [ItemUsePostController::class, 'store'])->name('write_item_use');
+Route::post('/write_item_use', [ItemUsePostController::class, 'store'])->middleware(['auth', 'verified'])->name('write_item_use');
 
-Route::get('/write_q&a', [QAController::class, 'create'])->name('write_q&a');
+Route::get('/write_q&a', [QAController::class, 'create'])->middleware(['auth', 'verified'])->name('write_q&a');
 
-Route::post('/write_q&a', [QAController::class, 'store'])->name('write_q&a');
+Route::post('/write_q&a', [QAController::class, 'store'])->middleware(['auth', 'verified'])->name('write_q&a');
 
-Route::get('/write_product_inquiry', [ProductInquiryController::class, 'create'])->name('write_product_inquiry');
+Route::get('/write_product_inquiry', [ProductInquiryController::class, 'create'])->middleware(['auth', 'verified'])->name('write_product_inquiry');
 
-Route::post('/write_product_inquiry', [ProductInquiryController::class, 'store'])->name('write_product_inquiry');
+Route::post('/write_product_inquiry', [ProductInquiryController::class, 'store'])->middleware(['auth', 'verified'])->name('write_product_inquiry');
 
 Route::get('/product_inquiry', function () {
     return view('board.product_inquiry');
