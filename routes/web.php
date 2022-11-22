@@ -7,6 +7,10 @@ use App\Http\Controllers\QnaController;
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\ProductInquiryController;
 use App\Http\Controllers\QAController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ItemUsePostController;
+
+
 
 
 /*
@@ -49,17 +53,17 @@ Route::get('/item_use', function () {
 })->name('item_use');
 
 
-Route::get('/write_item_use', [ItemUsePostController::class, 'create'])->name('write_item_use');
+Route::get('/write_item_use', [ItemUsePostController::class, 'create'])->middleware(['auth', 'verified'])->name('write_item_use');
 
-Route::post('/write_item_use', [ItemUsePostController::class, 'store'])->name('write_item_use');
+Route::post('/write_item_use', [ItemUsePostController::class, 'store'])->middleware(['auth', 'verified'])->name('write_item_use');
 
-Route::get('/write_q&a', [QAController::class, 'create'])->name('write_q&a');
+Route::get('/write_q&a', [QAController::class, 'create'])->middleware(['auth', 'verified'])->name('write_q&a');
 
-Route::post('/write_q&a', [QAController::class, 'store'])->name('write_q&a');
+Route::post('/write_q&a', [QAController::class, 'store'])->middleware(['auth', 'verified'])->name('write_q&a');
 
-Route::get('/write_product_inquiry', [ProductInquiryController::class, 'create'])->name('write_product_inquiry');
+Route::get('/write_product_inquiry', [ProductInquiryController::class, 'create'])->middleware(['auth', 'verified'])->name('write_product_inquiry');
 
-Route::post('/write_product_inquiry', [ProductInquiryController::class, 'store'])->name('write_product_inquiry');
+Route::post('/write_product_inquiry', [ProductInquiryController::class, 'store'])->middleware(['auth', 'verified'])->name('write_product_inquiry');
 
 
 Route::get('/product_inquiry', function () {
@@ -70,5 +74,11 @@ Route::get('/q&a', function () {
     return view('board.q&a');
 })->name('q&a');
 
+Route::get('/order', [OrderController::class, 'index'])->middleware(['auth','verified'])->name('order');
+
+Route::post('order_success', [OrderController::class, 'store'])->name('order_success');
+Route::get('/order_completed', function () {
+    return view('order_completed');
+});
 
 require __DIR__.'/auth.php';

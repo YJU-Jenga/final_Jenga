@@ -91,7 +91,7 @@
                             </form>
                         </div>
                         <div>
-                            <form action="{{ route('cart.clear') }}" method="POST">
+                            <form action="{{ route('order') }}" method="GET">
                                 @csrf
                                 <button class="px-6 py-2 text-red-100 bg-red-500 rounded shadow text-l">주문</button>
                             </form>

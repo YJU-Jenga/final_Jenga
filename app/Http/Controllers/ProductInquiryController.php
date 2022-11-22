@@ -2,50 +2,59 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
-use \Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class ProductInquiryController extends Controller
 {
     //
-    public function create()
-    {
-        return view('board.write_product_inquiry');
+    public function productList(){
+        $products = Product::all();
+        return view('products', compact('products'));
     }
-
+    public function productDetail(Request $request, $type){
+        $products = DB::table('products')->where('type', $type)->get();
+        return view('products_detail', compact('products'));
+    }
     public function store(Request $request)
     {
-        if($request->secret){
-        $request->validate([
-            'password' => ['required', 'size:4'],
-            ]);
-        $user = DB::table('posts')
-        ->insert([
-            'user_id' => Auth::user()->id,
-            'board_id' => 1,
-            'title' => $request->title,
-            'content' => $request->content,
-            'secret' => 1,
-            'password' => $request->password,
-            'created_at' => now(),
-            'updated_at' => now(),
+        DB::table('products')->insert([
+            'name' => $request->name,
+            'price' => $request->price,
+            'description' => $request->description,
+            'stock' => $request->stock,
+            'type' => $request->type,
+            'img' => $request->img,
         ]);
-        }
-        else {
-            $user = DB::table('posts')
-            ->insert([
-                'user_id' => Auth::user()->id,
-                'board_id' => 1,
-                'title' => $request->title,
-                'content' => $request->content,
-                'secret' => 0,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]); 
-        }
+        session()->flash('success', 'Product is Added Successfully !');
 
-        return redirect('/product_inquiry');
+        return redirect()->route('products.list');
+    }
+    public function create(){ // 생성, 뷰만 보여주면 됨, 값을 저장하는 것은 store에서 처리하기 때문
+        return view('register_product');
+    }
+    public function storeImage(Request $request)
+    {
+        $request->validate([
+            'image' => 'required|image|mimes:png,jpg,jpeg|max:2048'
+        ]);
+
+        $imageName = time().'.'.$request->image->extension();
+
+        // Public Folder
+        $request->image->move(public_path('images'), $imageName);
+
+        // //Store in Storage Folder
+        // $request->image->storeAs('images', $imageName);
+
+        // // Store in S3
+        // $request->image->storeAs('images', $imageName, 's3');
+
+        //Store IMage in DB 
+
+
+        return back()->with('success', 'Image uploaded Successfully!')
+        ->with('image', $imageName);
     }
 }
