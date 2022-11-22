@@ -13,7 +13,8 @@ class Board extends Model
         'board_name',
     ];
 
-    public function post () {
+    public function post()
+    {
         return $this->hasMany('\App\Models\Post');
     }
 }

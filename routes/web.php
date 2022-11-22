@@ -74,6 +74,17 @@ Route::get('/q&a', function () {
     return view('board.q&a');
 })->name('q&a');
 
+Route::get('/view_q&a/{id}', [QAController::class, 'viewQA'])->name('view_q&a');
+
+Route::get('/update_q&a/{id}', [QAController::class, 'updateQA'])->name('update_q&a');
+
+Route::get('/updateok_q&a/{id}', [QAController::class, 'updateokQA'])->name('updateok_q&a');
+Route::post('/updateok_q&a/{id}', [QAController::class, 'updateok'])->name('updateok_q&a');
+
+Route::get('/deleteck_q&a/{id}', [QAController::class, 'deleteck'])->name('deleteck_q&a');
+
+Route::get('/delete_q&a/{id}', [QAController::class, 'deleteQA'])->name('delete_q&a');
+
 Route::get('/order', [OrderController::class, 'index'])->middleware(['auth','verified'])->name('order');
 
 Route::post('order_success', [OrderController::class, 'store'])->name('order_success');
