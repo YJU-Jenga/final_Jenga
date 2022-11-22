@@ -43,6 +43,7 @@
                     <td>{{ $post->name }}</td>
                     <td>{{ $post->hit }}</td>
                     <td>{{ $post->created_at }}</td>
+                    <td>{{ $post->state? '답변 완료' : '답변 대기' }}</td>
                   </tr>
                 @else
                   <tr>  
@@ -50,6 +51,7 @@
                     <td>{{ $post->name }}</td>
                     <td>{{ $post->hit }}</td>
                     <td>{{ $post->created_at }}</td>
+                    <td>{{ $post->state? '답변 완료' : '답변 대기' }}</td>
                   </tr>
                 @endif
                 @endforeach

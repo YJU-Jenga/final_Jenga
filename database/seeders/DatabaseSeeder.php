@@ -33,7 +33,11 @@ class DatabaseSeeder extends Seeder
         $this->call(PostsTableSeeder::class);
         
         // 상품 목록 생성
+<<<<<<< HEAD
         $this->call(ProductSeeder::class);
+=======
+        // $this->call(ProductSeeder::class);
+>>>>>>> 6de61d7 (backup)
 
     }
 }
