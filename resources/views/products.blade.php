@@ -9,7 +9,7 @@
             @foreach ($products as $product)
                 <a href="/product-detail/{{$product->type}}"
                     class="w-full max-w-sm mx-auto overflow-hidden bg-white rounded-md shadow-md">
-                    <img src="{{ url($product->img) }}" alt="" class="w-full max-h-60">
+                    <img src="/storage/images/{{$product->img}}" alt="" class="w-full max-h-60">
                     <div class="flex items-end justify-end w-full bg-cover">
                     </div>
                     <div class="px-5 py-3">

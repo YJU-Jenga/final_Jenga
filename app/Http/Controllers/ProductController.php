@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -19,13 +20,19 @@ class ProductController extends Controller
     }
     public function store(Request $request)
     {
+        // dd(explode(".", $_FILES['img']['name']));
+
+        $name = explode(".", $_FILES['img']['name']);   // 파일이름 확장자 구분
+        $img = $name[0] . strtotime("Now").'.'.$name[1];    // 파일이름 시간 추가해서 수정
+        $request->file('img')->storeAs('images', $img, 'public');
+
         DB::table('products')->insert([
             'name' => $request->name,
             'price' => $request->price,
             'description' => $request->description,
             'stock' => $request->stock,
             'type' => $request->type,
-            'img' => $request->img,
+            'img' => $img,
         ]);
         session()->flash('success', 'Product is Added Successfully !');
 

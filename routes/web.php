@@ -21,10 +21,10 @@ use App\Http\Controllers\QAController;
 Route::get('products', [ProductController::class, 'productList'])->name('products.list');
 Route::get('product-register', [ProductController::class, 'create'])->name('product.add');
 Route::get('product-detail/{type}', [ProductController::class, 'productDetail'])->name('products.detail');
-// Route::controller(ProductController::class)->group(function(){
-//     Route::get('/image-upload', 'index')->name('image.form');
-//     Route::post('/upload-image', 'storeImage')->name('image.store');
-// });
+Route::controller(ProductController::class)->group(function(){
+    Route::get('/image-upload', 'index')->name('image.form');
+    Route::post('/upload-image', 'storeImage')->name('image.store');
+});
 Route::post('products', [ProductController::class, 'store'])->name('products.store');
 
 
