@@ -7,7 +7,6 @@ use \Illuminate\Support\Facades\DB;
 <?php
 $posts = DB::table('posts')->select(['posts.title', 'users.name', 'posts.hit', 'posts.created_at', 'posts.state'])
   ->leftJoin('users', 'posts.user_id', '=', 'users.id')
-  ->where('posts.user_id', '=', Auth::user()->id)
   ->where('posts.board_id', '=', 2)
   ->orderBy('posts.created_at', 'desc')
   ->get();
@@ -15,7 +14,7 @@ $posts = DB::table('posts')->select(['posts.title', 'users.name', 'posts.hit', '
 $page = 10;
 $posts_page = DB::table('posts')->select(['posts.id', 'posts.title', 'users.name', 'posts.hit', 'posts.created_at', 'posts.state'])
   ->leftJoin('users', 'posts.user_id', '=', 'users.id')
-  ->where('posts.user_id', '=', Auth::user()->id)
+
   ->where('posts.board_id', '=', 2)
   ->orderBy('posts.created_at', 'desc')
   ->paginate($page);
