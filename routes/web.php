@@ -30,7 +30,7 @@ Route::get('product-detail/{type}', [ProductController::class, 'productDetail'])
 Route::post('products', [ProductController::class, 'store'])->name('products.store');
 
 
-Route::get('cart', [CartController::class, 'cartList'])->name('cart.list');
+Route::get('cart', [CartController::class, 'cartList'])->middleware(['auth','verified'])->name('cart.list');
 Route::post('cart', [CartController::class, 'addToCart'])->name('cart.store');
 Route::post('update-cart', [CartController::class, 'updateCart'])->name('cart.update');
 Route::post('remove', [CartController::class, 'removeCart'])->name('cart.remove');
@@ -87,7 +87,7 @@ Route::get('/delete_q&a/{id}', [QAController::class, 'deleteQA'])->name('delete_
 
 Route::get('/order', [OrderController::class, 'index'])->middleware(['auth','verified'])->name('order');
 
-Route::post('order_success', [OrderController::class, 'store'])->name('order_success');
+Route::post('order_success', [OrderController::class, 'store'])->middleware(['auth','verified'])->name('order_success');
 Route::get('/order_completed', function () {
     return view('order_completed');
 });
