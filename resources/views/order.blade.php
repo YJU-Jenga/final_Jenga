@@ -43,7 +43,7 @@
                 <form class="mt-10" method="POST" action="{{ route('order_success') }}">
                     <!-- Postal Code -->
                     @csrf
-                    <x-text-input type="hidden" name="dd" value="{{ $products_info }}" />
+                    <x-text-input type="hidden" name="dd" value="{{ json_encode($products_info) }}" />
                     <div>
                         <x-input-label for="Postal code" :value="__('Postal code')" />
 
