@@ -1,14 +1,26 @@
+{{--@extends('master')--}}
+    <!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Ichigo</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/main.js'])
+    <!-- Styles -->
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+        }
+    </style>
+</head>
+
+<body>
 <x-app-layout>
-    {{-- 1 --}}
-    {{-- resources/views/master.blade.php의 <head></head> 안에 --}}
-    {{-- @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/main.js']) --}}
-    {{-- 추가해주세요~~ --}}
-
-    {{-- 2 --}}
-    {{-- extends('master') -> mater.blade.php에 네비게이션바 있어서 그거를 확장해서 사용하는 방향으로 해봤습니닷~~! --}}
-
-    {{-- 3 --}}
-    {{-- - 일단 내용물 어떻게 작성할 지 생각을 못하고 + 이미지도 딱히 할 게 없어서 샘플로 채웠습니다! 나중에 회의하고 채워봐욧,, --}}
 
     <figure id="section" class="flex flex-col items-center w-screen h-screen mt-16">
         <img class="w-3/4 h-80"
@@ -40,3 +52,6 @@
         <p class="mt-4 text-xl tracking-widest text-gray-500">응애~~~~~</p>
     </figure>
 </x-app-layout>
+</body>
+
+</html>

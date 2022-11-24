@@ -118,7 +118,7 @@ Route::get('/deleteck_product_inquiry/{id}', [ProductInquiryController::class, '
 
 Route::get('/order', [OrderController::class, 'index'])->middleware(['auth','verified'])->name('order');
 
-Route::post('order_success', [OrderController::class, 'store'])->name('order_success');
+Route::post('order_success', [OrderController::class, 'store'])->middleware(['auth','verified'])->name('order_success');
 Route::get('/order_completed', function () {
     return view('order_completed');
 });
