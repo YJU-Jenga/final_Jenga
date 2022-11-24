@@ -116,11 +116,13 @@ Route::get('/delete_product_inquiry/{id}', [ProductInquiryController::class, 'de
 Route::get('/deleteck_product_inquiry/{id}', [ProductInquiryController::class, 'deleteck'])->middleware(['auth', 'verified'])->name('deleteck_q&a');
 // -------------------- Product_inquiry --------------------
 
+
+// -------------------- Order --------------------
 Route::get('/order', [OrderController::class, 'index'])->middleware(['auth','verified'])->name('order');
 
 Route::post('order_success', [OrderController::class, 'store'])->middleware(['auth','verified'])->name('order_success');
 Route::get('/order_completed', function () {
     return view('order_completed');
-});
+})->name('order.completed');
 
 require __DIR__.'/auth.php';

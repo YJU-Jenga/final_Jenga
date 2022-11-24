@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('product_id')->constrained('products');
-            $table->foreignId('cart_id')->constrained('carts');
+            $table->integer('count');
             $table->string('postal_code');
             $table->string('address');
             $table->timestamps();

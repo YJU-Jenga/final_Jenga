@@ -20,12 +20,13 @@ class OrderController extends Controller
         $carts = DB::table('carts')->get();
         $products_info = DB::table('carts')
             ->join('products', 'carts.product_id', '=', 'products.id')
-            ->select('products.name', 'products.img', 'products.price', 'carts.id', 'carts.count', 'carts.total_price', 'carts.product_id', 'carts.user_id')
+            ->select('products.name', 'products.img', 'products.price', 'carts.count', 'carts.total_price', 'carts.product_id', 'carts.user_id')
             ->where('carts.user_id', Auth::user()->id)
             ->get();
         $price = DB::table('carts')
             ->where('user_id', Auth::user()->id)
             ->sum('total_price');
+
 
         return view('order', compact('products_info', 'price'));
     }
@@ -47,21 +48,38 @@ class OrderController extends Controller
         $data_arr = request('dd');
 
         $responseArray = json_decode($data_arr, true);
+
+        \Cart::remove($request->id);
+
+
+
         foreach ($responseArray as $el) {
             //dd($el['name']);
             $product_id = $el['product_id'];
-            $cart_id = $el['id'];
+            $count = $el['count'];
+
+            \Cart::remove($product_id);
+
             DB::table('orders')->insert([
                 'user_id' => Auth::user()->id,
                 'product_id' => $product_id,
-                'cart_id' => $cart_id,
                 'postal_code' => $postal_code,
                 'address' => $address,
+                'count' => $count,
                 'created_at' => now(),
                 'updated_at' => now()
             ]);
         }
-        return view('order_completed');
+
+        DB::table('carts')
+//            ->where('product_id', $product_id)
+            ->where('user_id', Auth::user()->id)
+            ->delete();
+
+
+        return redirect()->route('order.completed');
+
+
     }
 
     public function create(){
