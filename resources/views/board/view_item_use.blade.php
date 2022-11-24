@@ -100,7 +100,7 @@ $post = $posts[0];
 <x-app-layout>
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-      {{ __('Q&A') }}
+      {{ __('사용 후기') }}
     </h2>
   </x-slot>
   <div class="py-6">
@@ -124,17 +124,17 @@ $post = $posts[0];
         </div>
       </div>
       <div class="flex items-center justify-end mt-4">
-        <a href="{{ route('q&a') }}">
+        <a href="{{ route('item_use') }}">
           <x-primary-button class="ml-4">
             {{ __('목록') }}
           </x-primary-button>
         </a>
-        <a href="/update_q&a/{{ $post->id }}">
+        <a href="/update_item_use/{{ $post->id }}">
           <x-primary-button class="ml-4">
             {{ __('수정') }}
           </x-primary-button>
         </a>
-        <a href="/deleteck_q&a/{{ $post->id }}">
+        <a href="/deleteck_item_use/{{ $post->id }}">
           <x-primary-button class="ml-4">
             {{ __('삭제') }}
           </x-primary-button>

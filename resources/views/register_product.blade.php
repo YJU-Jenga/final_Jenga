@@ -5,7 +5,7 @@
                 <x-application-logo class="w-20 h-20 text-gray-500 fill-current" />
             </a>
         </x-slot>
-        <form method="POST" action="{{ route('products.store') }}">
+        <form method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data">
             @csrf
 
             <!-- Name -->
@@ -57,18 +57,16 @@
             <div class="mt-4">
                 <x-input-label for="img" :value="__('이미지')" />
 
-                <x-text-input id="img" class="block w-full mt-1" type="text" name="img" :value="old('img')"
+                <x-text-input type="file" id="img" class="block w-full mt-1" name="img" accept="image/*"
                     required />
 
                 <x-input-error :messages="$errors->get('img')" class="mt-2" />
             </div>
             <!-- Container (Contact Section) -->
             <div id="contact" class="container mt-5">
-                <form method="POST" action="{{ route('image.store') }}" enctype="multipart/form-data">
-                    <x-primary-button class="mt-5" type="submit">
-                        {{ __('상품 등록') }}
-                    </x-primary-button>
-                </form>
+                <x-primary-button class="mt-5" type="submit">
+                    {{ __('상품 등록') }}
+                </x-primary-button>
             </div>
         </form>
     </x-auth-card>
