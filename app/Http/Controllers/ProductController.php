@@ -15,8 +15,8 @@ class ProductController extends Controller
         return view('products', compact('products'));
     }
 
-    public function productDetail(Request $request, $type){
-        $products = DB::table('products')->where('type', $type)->get();
+    public function productDetail(Request $request, $id){
+        $products = DB::table('products')->where('id', $id)->get();
         return view('products_detail', compact('products'));
     }
 
@@ -27,7 +27,6 @@ class ProductController extends Controller
         //php artisan storage:link
         //sail artisan storage:link 명령어 입력 필수
         
-
         $name = explode(".", $_FILES['img']['name']);   // 파일이름 확장자 구분
         $img = $name[0] . strtotime("Now").'.'.$name[1];    // 파일이름 시간 추가해서 수정
         $request->file('img')->storeAs('images', $img, 'public');

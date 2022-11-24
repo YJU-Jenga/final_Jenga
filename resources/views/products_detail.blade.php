@@ -24,13 +24,13 @@ use Illuminate\Support\Facades\DB;
                 <div class="swiper mySwiper w-96 h-96">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <img class="object-cover w-full h-96" src="{{ $product->img }}" alt="image" />
+                            <img class="object-cover w-full h-96" src="/storage/images/{{$product->img}}" alt="image" />
                         </div>
                         <div class="swiper-slide">
-                            <img class="object-cover w-full h-96" src="{{ $product->img }}" alt="image" />
+                            <img class="object-cover w-full h-96" src="/storage/images/{{$product->img}}" alt="image" />
                         </div>
                         <div class="swiper-slide">
-                            <img class="object-cover w-full h-96" src="{{ $product->img }}" alt="image" />
+                            <img class="object-cover w-full h-96" src="/storage/images/{{$product->img}}" alt="image" />
                         </div>
                     </div>
                     <div class="swiper-button-next"></div>
@@ -67,7 +67,6 @@ use Illuminate\Support\Facades\DB;
             @endforeach
         </div>
     </div>
-    @extends('qna')
     @push('scripts')
         <!-- Swiper JS, 이미지 슬라이드 동작을 위함 -->
         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
