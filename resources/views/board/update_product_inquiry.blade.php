@@ -17,7 +17,7 @@ $post = $posts[0];
       <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 bg-white border-b border-gray-200">
 
-          <form method="POST" action="/updateok_q&a/{{ $post->id }}">
+          <form method="POST" action="/updateok_product_inquiry/{{ $post->id }}">
 
             @csrf
             <div>
