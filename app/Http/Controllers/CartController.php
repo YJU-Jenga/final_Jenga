@@ -17,23 +17,37 @@ class CartController extends Controller
 
 
     public function addToCart(Request $request)
-    {
-        \Cart::add([
-            'id' => $request->id,
-            'name' => $request->name,
-            'price' => $request->price,
-            'quantity' => $request->quantity,
-            'attributes' => array(
-                'image' => $request->image,
-            )
-        ]);
-        DB::table('carts')->insert([
-            'user_id' => Auth::user()->id,
-            'product_id' => $request->id,
-            'count' => $request->quantity,
-            'total_price' => $request->price,
-        ]);
-        session()->flash('success', 'Product is Added to Cart Successfully !');
+    {   
+        $carts = DB::table('carts')->select(['*'])
+        ->where('product_id', '=',$request->id)
+        ->where('user_id', '=', Auth::user()->id)
+        ->get();
+        // dd(count($carts));
+        if(count($carts) == 1){
+            // DB::table('carts')
+            //     ->where('product_id','=', $request->id)
+            //     ->where('user_id','=', Auth::user()->id)
+            //     ->update(['count' => $request->quantity + 1, 'total_price' => $request->price * $request->quantity]);
+            session()->flash('info', '이미 장바구니에 담긴 상품입니다. 수정은 장바구니에서 해주세요.');
+            return redirect()->route('cart.list');
+        }else {
+            DB::table('carts')->insert([  
+                'user_id' => Auth::user()->id,
+                'product_id' => $request->id,
+                'count' => $request->quantity,
+                'total_price' => $request->price,
+            ]);
+            \Cart::add([
+                'id' => $request->id,
+                'name' => $request->name,
+                'price' => $request->price,
+                'quantity' => $request->quantity,
+                'attributes' => array(
+                    'image' => $request->image,
+                )
+            ]);
+            session()->flash('success', 'Product is Added to Cart Successfully !');
+        }
 
         return redirect()->route('cart.list');
     }

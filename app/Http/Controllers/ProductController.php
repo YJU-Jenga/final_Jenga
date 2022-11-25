@@ -38,6 +38,8 @@ class ProductController extends Controller
             'stock' => $request->stock,
             'type' => $request->type,
             'img' => $img,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
         session()->flash('success', 'Product is Added Successfully !');
 
