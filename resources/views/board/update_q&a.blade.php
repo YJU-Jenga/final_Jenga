@@ -33,6 +33,21 @@ $post = $posts[0];
               <textarea id="content" class="block mt-1 w-full" type="text" name="content" required>{{ $post->content }}</textarea>
             </div>
 
+            @if($post->secret)
+            <div class="block" x-data="{ open: true }">
+              <div>
+                <label for="secret">비밀글 여부 </label>
+                <input type="checkbox" id="secret" name="secret" @click="open = ! open" checked>
+              </div>
+              <div x-show="open" style="display: none;" @click="display: block;">
+                <x-input-label for="password" :value="__('비밀번호')" />
+
+                <x-text-input type="password" id="password" class="block mt-1 w-full" type="text" name="password" placeholder="4자리" value="{{ $post->password }}" />
+
+                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+              </div>
+            </div>
+            @else
             <div class="block" x-data="{ open: false }">
               <div>
                 <label for="secret">비밀글 여부 </label>
@@ -41,17 +56,19 @@ $post = $posts[0];
               <div x-show="open" style="display: none;" @click="display: block;">
                 <x-input-label for="password" :value="__('비밀번호')" />
 
-                <x-text-input type="password" id="password" class="block mt-1 w-full" type="text" name="password" placeholder="4자리" value="{{ $post->password }}" required autofocus />
+                <x-text-input type="password" id="password" class="block mt-1 w-full" type="text" name="password" placeholder="4자리" value="{{ $post->password }}" />
 
                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
               </div>
             </div>
+            @endif
 
             <div class="flex items-center justify-end mt-4">
               <x-primary-button class="ml-4">
                 {{ __('수정') }}
               </x-primary-button>
             </div>
+          </form>
         </div>
       </div>
     </div>

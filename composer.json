@@ -6,10 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
-<<<<<<< HEAD
-=======
         "darryldecode/cart": "^4.2",
->>>>>>> ced5d6b (clean push)
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",

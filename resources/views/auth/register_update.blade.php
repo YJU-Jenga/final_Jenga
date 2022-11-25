@@ -1,13 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="text-xl font-semibold leading-tight text-gray-800">
             {{ __('회원 정보 수정') }}
         </h2>
     </x-slot>
     <x-auth-card>
         <x-slot name="logo">
             <!-- <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                <x-application-logo class="w-20 h-20 text-gray-500 fill-current" />
             </a> -->
         </x-slot>
 
@@ -18,7 +18,7 @@
             <div>
                 <x-input-label for="name" :value="__('Name')" />
 
-                <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" value="{{Auth::user()->name}}" required autofocus />
+                <x-text-input id="name" class="block w-full mt-1" type="text" name="name" value="{{Auth::user()->name}}" required autofocus />
 
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </div>
@@ -27,7 +27,7 @@
             <!-- <div class="mt-4">
                 <x-input-label for="email" :value="__('Email')" />
 
-                <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" value="{{Auth::user()->email}}" required readonly onfocus="this.blur();"/>
+                <x-text-input id="email" class="block w-full mt-1" type="email" name="email" value="{{Auth::user()->email}}" required readonly onfocus="this.blur();"/>
 
                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
             </div> -->
@@ -36,7 +36,7 @@
             <div class="mt-4">
                 <x-input-label for="phone" :value="__('Phone')" />
 
-                <x-text-input id="phone" class="block mt-1 w-full" type="tel" name="phone" value="{{Auth::user()->phone}}" required />
+                <x-text-input id="phone" class="block w-full mt-1" type="tel" name="phone" value="{{Auth::user()->phone}}" required />
 
                 <x-input-error :messages="$errors->get('phone')" class="mt-2" />
             </div>
@@ -45,7 +45,7 @@
             <div class="mt-4">
                 <x-input-label for="password" :value="__('Password')" />
 
-                <x-text-input id="password" class="block mt-1 w-full"
+                <x-text-input id="password" class="block w-full mt-1"
                                 type="password"
                                 name="password"
                                 required autocomplete="new-password" />
@@ -57,7 +57,7 @@
             <div class="mt-4">
                 <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
 
-                <x-text-input id="password_confirmation" class="block mt-1 w-full"
+                <x-text-input id="password_confirmation" class="block w-full mt-1"
                                 type="password"
                                 name="password_confirmation" required />
 

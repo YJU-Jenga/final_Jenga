@@ -1,18 +1,9 @@
-<<<<<<< HEAD
 <x-app-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <!-- <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a> -->
-=======
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
             <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                <x-application-logo class="w-20 h-20 text-gray-500 fill-current" />
             </a>
->>>>>>> ced5d6b (clean push)
         </x-slot>
 
         <div class="mb-4 text-sm text-gray-600">
@@ -26,7 +17,7 @@
             <div>
                 <x-input-label for="password" :value="__('Password')" />
 
-                <x-text-input id="password" class="block mt-1 w-full"
+                <x-text-input id="password" class="block w-full mt-1"
                                 type="password"
                                 name="password"
                                 required autocomplete="current-password" />
@@ -41,8 +32,4 @@
             </div>
         </form>
     </x-auth-card>
-<<<<<<< HEAD
 </x-app-layout>
-=======
-</x-guest-layout>
->>>>>>> ced5d6b (clean push)

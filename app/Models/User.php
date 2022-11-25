@@ -20,10 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-<<<<<<< HEAD
         'phone',
-=======
->>>>>>> ced5d6b (clean push)
         'password',
     ];
 
@@ -45,7 +42,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-<<<<<<< HEAD
 
     public function post () {
         return $this->hasMany('\App\Models\Post');
@@ -62,6 +58,4 @@ class User extends Authenticatable
     public function cart () {
         return $this->hasOne('\App\Models\Cart');
     }
-=======
->>>>>>> ced5d6b (clean push)
 }

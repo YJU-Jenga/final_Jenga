@@ -12,7 +12,6 @@ class Product extends Model
     protected $fillable = [
         'name',
         'price',
-<<<<<<< HEAD
         'description',
         'stock',
         'type',
@@ -26,9 +25,4 @@ class Product extends Model
     public function order() {
         return $this->belongsTo('\App\Models\Order');
     }
-=======
-        'image',
-        'description',
-    ];
->>>>>>> ced5d6b (clean push)
 }

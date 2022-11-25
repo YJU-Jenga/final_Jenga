@@ -194,10 +194,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-<<<<<<< HEAD
-=======
         Darryldecode\Cart\CartServiceProvider::class,
->>>>>>> ced5d6b (clean push)
 
     ],
 
@@ -211,11 +208,7 @@ return [
     | the aliases are "lazy" loaded so they don't hinder performance.
     |
     */
-<<<<<<< HEAD
-
-=======
     'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
->>>>>>> ced5d6b (clean push)
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),

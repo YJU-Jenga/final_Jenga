@@ -66,7 +66,7 @@ class ItemUsePostController extends Controller
     public function updateItemUse(Request $request, $id)
     {
         $posts = DB::table('posts')
-            ->select(['posts.id', 'posts.title', 'posts.content', 'posts.password'])
+            ->select(['posts.id', 'posts.title', 'posts.content', 'posts.secret', 'posts.password'])
             ->leftJoin('users', 'posts.user_id', '=', 'users.id')
             ->where('posts.id', $id)
             ->get();
@@ -76,17 +76,29 @@ class ItemUsePostController extends Controller
 
     public function updateok(Request $request, $id)
     {
-        $request->validate([
-            'password' => ['required', 'size:4'],
-        ]);
-        $posts = DB::table('posts')
-            ->where('posts.id', $id)
-            ->update([
-                'title' => $request->title,
-                'content' => $request->content,
-                'secret' => $request->secret ? 1 : 0,
-                'password' => $request->password,
+        if ($request->secret) {
+            $request->validate([
+                'password' => ['required', 'size:4'],
             ]);
+            $posts = DB::table('posts')
+                ->where('posts.id', $id)
+                ->update([
+                    'title' => $request->title,
+                    'content' => $request->content,
+                    'secret' => 1,
+                    'password' => $request->password,
+                ]);
+        } else {
+            $posts = DB::table('posts')
+                ->where('posts.id', $id)
+                ->update([
+                    'title' => $request->title,
+                    'content' => $request->content,
+                    'secret' => 0,
+                    'password' => $request->password,
+                ]);
+        }
+
         return view('board.updateok_item_use');
     }
 

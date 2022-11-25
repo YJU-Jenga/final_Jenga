@@ -4,10 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-<<<<<<< HEAD
 use \Illuminate\Support\Facades\DB;
-=======
->>>>>>> ced5d6b (clean push)
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -26,14 +23,11 @@ class RegisteredUserController extends Controller
     {
         return view('auth.register');
     }
-<<<<<<< HEAD
     
     public function up()
     {
         return view('auth.register_update');
     }
-=======
->>>>>>> ced5d6b (clean push)
 
     /**
      * Handle an incoming registration request.
@@ -47,22 +41,15 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-<<<<<<< HEAD
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'phone' => ['required', 'regex:/[0-9]{3}-[0-9]{4}-[0-9]{4}/'],
-=======
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
->>>>>>> ced5d6b (clean push)
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-<<<<<<< HEAD
             'phone' => $request->phone,
-=======
->>>>>>> ced5d6b (clean push)
             'password' => Hash::make($request->password),
         ]);
 
@@ -72,7 +59,6 @@ class RegisteredUserController extends Controller
 
         return redirect(RouteServiceProvider::HOME);
     }
-<<<<<<< HEAD
 
     public function update(Request $request) {
         $request->validate([
@@ -92,6 +78,4 @@ class RegisteredUserController extends Controller
         ]);
         return redirect('/mypage');
     }
-=======
->>>>>>> ced5d6b (clean push)
 }

@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800">
+        <h2 class="text-xl font-semibold text-gray-800">
             {{ __('장바구니') }}
         </h2>
     </x-slot>
@@ -19,13 +19,13 @@
                             <thead>
                                 <tr class="h-12 uppercase">
                                     <th class="hidden md:table-cell"></th>
-                                    <th class="text-left">이름</th>
+                                    <th class="text-left pl-9">이름</th>
                                     <th class="pl-5 text-left lg:text-right lg:pl-0">
-                                        <span class="lg:hidden" title="Quantity">Qtd</span>
-                                        <span class="hidden lg:inline">Quantity</span>
+                                        <span class="lg:hidden" title="Quantity">수량</span>
+                                        <span class="hidden lg:inline">수량</span>
                                     </th>
-                                    <th class="hidden text-right md:table-cell"> price</th>
-                                    <th class="hidden text-right md:table-cell"> Remove </th>
+                                    <th class="hidden pr-6 text-right md:table-cell"> 가격</th>
+                                    <th class="hidden pr-2 text-right md:table-cell"> 삭제 </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -33,13 +33,13 @@
                                     <tr>
                                         <td class="hidden pb-4 md:table-cell">
                                             <a href="#">
-                                                <img src="{{ $item->attributes->image }}" class="w-20 rounded"
-                                                    alt="Thumbnail">
+                                                <img src="/storage/images/{{ $item->attributes->image }}"
+                                                    class="w-20 rounded" alt="Thumbnail">
                                             </a>
                                         </td>
                                         <td>
                                             <a href="#">
-                                                <p class="mb-2 md:ml-4 text-purple-600 font-bold">{{ $item->name }}
+                                                <p class="mb-2 font-bold md:ml-4">{{ $item->name }}
                                                 </p>
 
                                             </a>
@@ -54,16 +54,16 @@
                                                             value="{{ $item->id }}">
                                                         <input type="text" name="quantity"
                                                             value="{{ $item->quantity }}"
-                                                            class="w-16 text-center h-6 text-gray-800 outline-none rounded border border-blue-600" />
+                                                            class="w-16 h-6 text-center text-gray-800 border rounded outline-none" />
                                                         <button
-                                                            class="px-4 mt-1 py-1.5 text-sm rounded rounded shadow text-violet-100 bg-violet-500">Update</button>
+                                                            class="px-4 mt-1 py-1.5 text-sm rounded shadow text-gray-900 bg-white border border-gray-300 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Update</button>
                                                     </form>
                                                 </div>
                                             </div>
                                         </td>
                                         <td class="hidden text-right md:table-cell">
                                             <span class="text-sm font-medium lg:text-base">
-                                                ${{ $item->price }}
+                                                {{ $item->price }}₩
                                             </span>
                                         </td>
                                         <td class="hidden text-right md:table-cell">
@@ -71,7 +71,7 @@
                                                 @csrf
                                                 <input type="hidden" value="{{ $item->id }}" name="id">
                                                 <button
-                                                    class="px-4 py-2 text-white bg-red-600 shadow rounded-full">x</button>
+                                                    class="px-4 py-2 text-white bg-red-500 rounded-full shadow">X</button>
                                             </form>
 
                                         </td>
@@ -86,12 +86,16 @@
                         <div>
                             <form action="{{ route('cart.clear') }}" method="POST">
                                 @csrf
-                                <button class="px-6 py-2 text-sm  rounded shadow text-red-100 bg-red-500">장바구니
+                                <button class="px-6 py-2 text-sm text-red-100 bg-red-500 rounded shadow">장바구니
                                     비우기</button>
                             </form>
                         </div>
-
-
+                        <div>
+                            <form action="{{ route('order') }}" method="GET">
+                                @csrf
+                                <button class="px-6 py-2 text-red-100 bg-red-500 rounded shadow text-l">주문</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
