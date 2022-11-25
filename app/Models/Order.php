@@ -10,8 +10,12 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
+        'product_id',
+        'count',
         'postal_code',
         'address',
+        'state',
     ];
 
     public function user() {
@@ -20,9 +24,5 @@ class Order extends Model
 
     public function product() {
         return $this->hasMany('\App\Models\Product');
-    }
-
-    public function cart() {
-        return $this->belongsTo('\App\Models\Cart');
     }
 }

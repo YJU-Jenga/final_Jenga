@@ -33,8 +33,8 @@
                                     <tr>
                                         <td class="hidden pb-4 md:table-cell">
                                             <a href="#">
-                                                <img src="/storage/images/{{$item->attributes->image}}" class="w-20 rounded"
-                                                    alt="Thumbnail">
+                                                <img src="/storage/images/{{ $item->attributes->image }}"
+                                                    class="w-20 rounded" alt="Thumbnail">
                                             </a>
                                         </td>
                                         <td>
@@ -90,8 +90,14 @@
                                     비우기</button>
                             </form>
                         </div>
-
-
+                        @if(count($cartItems) > 0)
+                        <div>
+                            <form action="{{ route('order') }}" method="GET">
+                                @csrf
+                                <button class="px-6 py-2 text-red-100 bg-red-500 rounded shadow text-l">주문</button>
+                            </form>
+                        </div>
+                        @endif
                     </div>
                 </div>
             </div>

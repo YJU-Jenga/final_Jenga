@@ -27,7 +27,11 @@ class DatabaseSeeder extends Seeder
         // 게시판을 한 번 만들고나서 주석으로 바꾸기
         
         // 게시판 생성
-        // $this->call(BoardsTableSeeder::class);
+        $this->call(BoardsTableSeeder::class);
+        
+        // 유저 생성 -> id 1 = 사용자, id 2 = 관리자
+        $this->call(UsersSeeder::class);
+        
 
         // 게시글 생성
         $this->call(PostsTableSeeder::class);

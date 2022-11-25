@@ -1,11 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ItemUsePostController;
-use App\Http\Controllers\ProductInquiryController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\QnaController;
+use App\Http\Controllers\BoardController;
+use App\Http\Controllers\ProductInquiryController;
 use App\Http\Controllers\QAController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ItemUsePostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +23,7 @@ use App\Http\Controllers\QAController;
 
 // -------------------- Main --------------------
 Route::get('/', function () {
-    return view('welcome');
+    return view('main');
 })->name('/');;
 // -------------------- Main --------------------
 
@@ -43,18 +46,26 @@ Route::post('products', [ProductController::class, 'store'])->name('products.sto
 // -------------------- Product --------------------
 
 // -------------------- Cart --------------------
-Route::get('cart', [CartController::class, 'cartList'])->name('cart.list');
-Route::post('cart', [CartController::class, 'addToCart'])->name('cart.store');
-Route::post('update-cart', [CartController::class, 'updateCart'])->name('cart.update');
-Route::post('remove', [CartController::class, 'removeCart'])->name('cart.remove');
-Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear');
+Route::get('cart', [CartController::class, 'cartList'])->middleware(['auth', 'verified'])->name('cart.list');
+Route::post('cart', [CartController::class, 'addToCart'])->middleware(['auth', 'verified'])->name('cart.store');
+Route::post('update-cart', [CartController::class, 'updateCart'])->middleware(['auth', 'verified'])->name('cart.update');
+Route::post('remove', [CartController::class, 'removeCart'])->middleware(['auth', 'verified'])->name('cart.remove');
+Route::post('clear', [CartController::class, 'clearAllCart'])->middleware(['auth', 'verified'])->name('cart.clear');
 // -------------------- Cart --------------------
 
+// -------------------- Order --------------------
+Route::get('/order', [OrderController::class, 'index'])->middleware(['auth','verified'])->name('order');
+
+Route::post('order_success', [OrderController::class, 'store'])->middleware(['auth','verified'])->name('order_success');
+Route::get('/order_completed', function () {
+    return view('order_completed');
+})->name('order.completed');
+// -------------------- Order --------------------
 
 
 
 
-
+// <-------------------- Board_Posts -------------------->
 // -------------------- Item_use --------------------
 Route::get('/item_use', function () {
     return view('board.item_use');
@@ -118,6 +129,7 @@ Route::get('/updateok_product_inquiry/{id}', [ProductInquiryController::class, '
 Route::get('/delete_product_inquiry/{id}', [ProductInquiryController::class, 'deleteProductInquiry'])->middleware(['auth', 'verified'])->name('delete_q&a');
 Route::get('/deleteck_product_inquiry/{id}', [ProductInquiryController::class, 'deleteck'])->middleware(['auth', 'verified'])->name('deleteck_q&a');
 // -------------------- Product_inquiry --------------------
+// <-------------------- Board_Posts -------------------->
 
 
 require __DIR__.'/auth.php';
