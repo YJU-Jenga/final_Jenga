@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductInquiryController;
 use App\Http\Controllers\QAController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ItemUsePostController;
+use App\Http\Controllers\CommentController;
 
 
 
@@ -53,9 +54,8 @@ Route::get('/mypage', function () {
 })->middleware(['auth', 'verified'])->name('mypage');
 
 // -------------------- Item_use --------------------
-Route::get('/item_use', function () {
-    return view('board.item_use');
-})->name('item_use');
+Route::get('/item_use', [ItemUsePostController::class, 'index'])->name('item_use');
+
 // -------------------- Item_use Write --------------------
 Route::get('/write_item_use', [ItemUsePostController::class, 'create'])->middleware(['auth', 'verified'])->name('write_item_use');
 Route::post('/write_item_use', [ItemUsePostController::class, 'store'])->middleware(['auth', 'verified'])->name('write_item_use');
@@ -75,9 +75,8 @@ Route::get('/deleteck_item_use/{id}', [ItemUsePostController::class, 'deleteckIt
 // -------------------- Item_use --------------------
 
 // -------------------- Q & A --------------------
-Route::get('/q&a', function () {
-    return view('board.q&a');
-})->name('q&a');
+Route::get('/q&a', [QAController::class, 'index'])->name('q&a');
+
 // -------------------- Q & A Write --------------------
 Route::get('/write_q&a', [QAController::class, 'create'])->middleware(['auth', 'verified'])->name('write_q&a');
 Route::post('/write_q&a', [QAController::class, 'store'])->middleware(['auth', 'verified'])->name('write_q&a');
@@ -97,30 +96,34 @@ Route::get('/deleteck_q&a/{id}', [QAController::class, 'deleteck'])->middleware(
 // -------------------- Q & A --------------------
 
 // -------------------- Product_inquiry --------------------
-Route::get('/product_inquiry', function () {
-    return view('board.product_inquiry');
-})->name('product_inquiry');
+Route::get('/product_inquiry', [ProductInquiryController::class, 'index'])->name('product_inquiry');
+
 // -------------------- Product_inquiry Write --------------------
 Route::get('/write_product_inquiry', [ProductInquiryController::class, 'create'])->middleware(['auth', 'verified'])->name('write_product_inquiry');
 Route::post('/write_product_inquiry', [ProductInquiryController::class, 'store'])->middleware(['auth', 'verified'])->name('write_product_inquiry');
 
 // -------------------- Product_inquiry View --------------------
-Route::get('/view_product_inquiry/{id}', [ProductInquiryController::class, 'viewProductInquiry'])->name('view_q&a');
+Route::get('/view_product_inquiry/{id}', [ProductInquiryController::class, 'viewProductInquiry'])->name('view_product_inquiry');
 // -------------------- Product_inquiry Update --------------------
-Route::get('/update_product_inquiry/{id}', [ProductInquiryController::class, 'updateProductInquiry'])->middleware(['auth', 'verified'])->name('update_q&a');
+Route::get('/update_product_inquiry/{id}', [ProductInquiryController::class, 'updateProductInquiry'])->middleware(['auth', 'verified'])->name('update_product_inquiry');
 
-Route::post('/updateok_product_inquiry/{id}', [ProductInquiryController::class, 'updateok'])->middleware(['auth', 'verified'])->name('updateok_q&a');
-Route::get('/updateok_product_inquiry/{id}', [ProductInquiryController::class, 'updateokProductInquiry'])->middleware(['auth', 'verified'])->name('updateok_q&a');
+Route::post('/updateok_product_inquiry/{id}', [ProductInquiryController::class, 'updateok'])->middleware(['auth', 'verified'])->name('updateok_product_inquiry');
+Route::get('/updateok_product_inquiry/{id}', [ProductInquiryController::class, 'updateokProductInquiry'])->middleware(['auth', 'verified'])->name('updateok_product_inquiry');
 // -------------------- Product_inquiry Delete --------------------
-Route::get('/delete_product_inquiry/{id}', [ProductInquiryController::class, 'deleteProductInquiry'])->middleware(['auth', 'verified'])->name('delete_q&a');
-Route::get('/deleteck_product_inquiry/{id}', [ProductInquiryController::class, 'deleteck'])->middleware(['auth', 'verified'])->name('deleteck_q&a');
+Route::get('/delete_product_inquiry/{id}', [ProductInquiryController::class, 'deleteProductInquiry'])->middleware(['auth', 'verified'])->name('delete_product_inquiry');
+Route::get('/deleteck_product_inquiry/{id}', [ProductInquiryController::class, 'deleteck'])->middleware(['auth', 'verified'])->name('deleteck_product_inquiry');
 // -------------------- Product_inquiry --------------------
 
-Route::get('/order', [OrderController::class, 'index'])->middleware(['auth','verified'])->name('order');
+Route::get('/order', [OrderController::class, 'index'])->middleware(['auth', 'verified'])->name('order');
 
-Route::post('order_success', [OrderController::class, 'store'])->middleware(['auth','verified'])->name('order_success');
+Route::post('/order_success', [OrderController::class, 'store'])->middleware(['auth', 'verified'])->name('order_success');
 Route::get('/order_completed', function () {
     return view('order_completed');
 });
 
-require __DIR__.'/auth.php';
+
+// -------------------- comment_write --------------------
+Route::get('/comment_write', [CommentController::class, 'create'])->middleware(['auth', 'verified'])->name('comment_write');
+Route::post('/comment_write', [CommentController::class, 'store'])->middleware(['auth', 'verified'])->name('comment_write');
+
+require __DIR__ . '/auth.php';
