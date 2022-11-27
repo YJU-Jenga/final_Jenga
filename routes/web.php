@@ -123,6 +123,9 @@ Route::get('/updateok_product_inquiry/{id}', [ProductInquiryController::class, '
 Route::get('/delete_product_inquiry/{id}', [ProductInquiryController::class, 'deleteProductInquiry'])->middleware(['auth', 'verified'])->name('delete_product_inquiry');
 Route::get('/deleteck_product_inquiry/{id}', [ProductInquiryController::class, 'deleteck'])->middleware(['auth', 'verified'])->name('deleteck_product_inquiry');
 // -------------------- Product_inquiry --------------------
+// -------------------- comment_write --------------------
+Route::get('/comment_write', [CommentController::class, 'create'])->middleware(['auth', 'verified'])->name('comment_write');
+Route::post('/comment_write', [CommentController::class, 'store'])->middleware(['auth', 'verified'])->name('comment_write');
 // <-------------------- Board_Posts -------------------->
 
 require __DIR__.'/auth.php';

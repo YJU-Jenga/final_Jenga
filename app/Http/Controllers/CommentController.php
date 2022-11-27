@@ -30,6 +30,12 @@ class CommentController extends Controller
         'created_at' => now(),
         'updated_at' => now(),
       ]);
-    return redirect('/');
+    if($request->id == 1){
+      return redirect('/item_use');
+    } else if($request->id == 2){
+      return redirect('/q&a');
+    } else {
+      return redirect('/product_inquiry');
+    }
   }
 }
