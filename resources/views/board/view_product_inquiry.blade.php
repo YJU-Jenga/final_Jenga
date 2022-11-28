@@ -4,6 +4,13 @@ use Illuminate\Support\Facades\Auth;
 use \Illuminate\Support\Facades\DB;
 
 $post = $posts[0];
+
+$comments = DB::table('comments')->select(['comments.id', 'comments.content', 'comments.created_at', 'users.name'])
+  ->leftJoin('users', 'comments.user_id', '=', 'users.id')
+  ->leftJoin('posts', 'comments.post_id', '=', 'posts.id')
+  ->where('comments.post_id', '=', $post->id)
+  ->orderBy('posts.created_at', 'desc')
+  ->get();
 ?>
 <style>
   HTML CSSResult Skip Results Iframe EDIT ON body {
@@ -99,13 +106,13 @@ $post = $posts[0];
 
 <x-app-layout>
   <x-slot name="header">
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+    <h2 class="text-xl font-semibold leading-tight text-gray-800">
       {{ __('상품 문의') }}
     </h2>
   </x-slot>
   <div class="py-6">
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-      <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+    <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
         <div class="p-6 bg-white border-b border-gray-200">
           <table class="table-auto" width=100% border-top=1px solid=#444444 border-collapse=collapse>
             <th>제목</th>
@@ -113,18 +120,47 @@ $post = $posts[0];
             <th>내용</th>
             <th>조회수</th>
             <th>작성일</th>
+            @if($post->img != null)
+            <th>이미지</th>
+            @endif
             <tr>
               <td>{{ $post -> title }}</td>
               <td>{{ $post -> name }}</td>
               <td>{{ $post -> content }}</td>
               <td>{{ $post -> hit }}</td>
               <td>{{ $post -> created_at }}</td>
+              @if($post->img != null)
+              <td><img src="/storage/images/{{ $post->img }}" alt="" class="w-full max-h-60"></td>
+              @endif
             </tr>
           </table>
+          <div>
+            @foreach ($comments as $comment)
+            <div>
+              <h1>작성자 : {{ $comment->name }}</h1>
+              <h1>내용 : {{ $comment->content }}</h1>
+              <h1>작성일 :{{ $comment->created_at }}</h1>
+            </div>
+            @endforeach
+          </div>
+          @if(Auth::user()->permission == 1 && $post->state == 0)
+          @auth()
+          <div class="w-4/5 mx-auto mt-6 text-right">
+            <form method="post" action="/comment_write">
+              @csrf
+              <textarea name="content" id="content" class="w-full h-32 border border-blue-300 resize-none" Placeholder="답글을 작성해 주세요." required></textarea>
+              <x-primary-button class="mt-4 ml-4">
+                <input type="hidden" id="id" name="id" value="{{ $post->id }}">
+                <input type="submit" value="작성">
+              </x-primary-button>
+            </form>
+          </div>
+          @endauth
+          @endif
         </div>
       </div>
       <div class="flex items-center justify-end mt-4">
-        <a href="{{ route('q&a') }}">
+        <a href="{{ route('product_inquiry') }}">
           <x-primary-button class="ml-4">
             {{ __('목록') }}
           </x-primary-button>

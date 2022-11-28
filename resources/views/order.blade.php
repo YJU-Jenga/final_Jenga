@@ -18,8 +18,7 @@
                         @foreach ($products_info as $product)
                             <tr>
                                 <td class="flex justify-center">
-                                    <img src="{{ $product->img }}">
-                                    {{--                            <img src="{{$product->img}}"> --}}
+                                    <img class="object-contain w-48 h-36" src="/storage/images/{{ $product->img }}">
                                 </td>
 
                                 <td>{{ $product->name }}</td>
