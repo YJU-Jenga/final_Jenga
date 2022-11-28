@@ -133,7 +133,7 @@ $posts_page = DB::table('posts')->select(['posts.id', 'posts.title', 'users.name
               <td>{{ $post->title }}</td>
               <td>{{ $post->name }}</td>
               <td>{{ $post->hit }}</td>
-              <td>{{ $post->created_at }}</td>
+              <td>{{ Carbon\Carbon::parse($post->created_at)->format('Y-m-d') }}</td>
               <td>{{ $post->state? '답변 완료' : '답변 대기' }}</td>
             </tr>
             @endif
