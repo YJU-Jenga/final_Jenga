@@ -2,6 +2,15 @@
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
             {{ __('상품') }}
+            @auth()
+            @if(Auth::user()->permission == 1)
+            <a href="/product-register">
+                <x-primary-button class="ml-4">
+                    {{ __('등록') }}
+                </x-primary-button>
+            </a>
+            @endif
+            @endauth
         </h2>
     </x-slot>
     <div class="container px-12 py-8 mx-auto">
@@ -9,10 +18,8 @@
             @foreach ($products as $product)
                 <a href="/product-detail/{{$product->id}}"
                     class="w-full max-w-sm mx-auto overflow-hidden bg-white rounded-md shadow-md">
-                    <img src="/storage/images/{{$product->img}}" alt="" class="w-full max-h-60">
-                    <div class="flex items-end justify-end w-full bg-cover">
-                    </div>
-                    <div class="px-5 py-3">
+                        <img class="object-cover w-full h-96" src="/storage/images/{{$product->img}}" alt="image">
+                        <div class="px-5 py-3">
                         <h3 class="text-gray-700 uppercase">{{ $product->name }}</h3>
                         <span class="mt-2 text-gray-500">{{ $product->price }}₩</span>
                         <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">

@@ -15,7 +15,7 @@ $posts_page = DB::table('posts')->select(['posts.id', 'posts.title', 'users.name
 <style>
   HTML CSSResult Skip Results Iframe EDIT ON body {
     padding: 1.5em;
-    background: #f5f5f5;
+    background: #f5f5f5
   }
 
   table {

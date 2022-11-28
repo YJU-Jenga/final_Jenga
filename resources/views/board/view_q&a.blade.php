@@ -17,7 +17,7 @@ $comments = DB::table('comments')->select(['comments.id', 'comments.content', 'c
 <style>
   HTML CSSResult Skip Results Iframe EDIT ON body {
     padding: 1.5em;
-    background: #f5f5f5;
+    background: #f5f5f5
   }
 
   table {
@@ -108,13 +108,13 @@ $comments = DB::table('comments')->select(['comments.id', 'comments.content', 'c
 
 <x-app-layout>
   <x-slot name="header">
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+    <h2 class="text-xl font-semibold leading-tight text-gray-800">
       {{ __('Q&A') }}
     </h2>
   </x-slot>
   <div class="py-6">
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-      <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+    <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
         <div class="p-6 bg-white border-b border-gray-200">
           <table class="table-auto" width=100% border-top=1px solid=#444444 border-collapse=collapse>
             <th>제목</th>
@@ -145,20 +145,21 @@ $comments = DB::table('comments')->select(['comments.id', 'comments.content', 'c
             </div>
             @endforeach
           </div>
-          @if(Auth::user()->permission == 1 && $post->state == 0)
           @auth()
+          @if(Auth::user()->permission == 1 && $post->state == 0)
           <div class="w-4/5 mx-auto mt-6 text-right">
             <form method="post" action="/comment_write">
               @csrf
-              <textarea name="content" id="content" class="border border-blue-300 resize-none w-full h-32" Placeholder="답글을 작성해 주세요." required></textarea>
-              <x-primary-button class="ml-4 mt-4">
+              <textarea name="content" id="content" class="w-full h-32 border border-blue-300 resize-none" Placeholder="답글을 작성해 주세요." required></textarea>
+              <x-primary-button class="mt-4 ml-4">
                 <input type="hidden" id="id" name="id" value="{{ $post->id }}">
+                <input type="hidden" id="board_id" name="board_id" value="{{ $post->board_id }}">
                 <input type="submit" value="작성">
               </x-primary-button>
             </form>
           </div>
-          @endauth
           @endif
+          @endauth
         </div>
       </div>
       <div class="flex items-center justify-end mt-4">

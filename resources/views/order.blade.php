@@ -18,8 +18,7 @@
                         @foreach ($products_info as $product)
                             <tr>
                                 <td class="flex justify-center">
-                                    <img src="{{ $product->img }}">
-                                    {{--                            <img src="{{$product->img}}"> --}}
+                                    <img class="object-contain w-48 h-36" src="/storage/images/{{ $product->img }}">
                                 </td>
 
                                 <td>{{ $product->name }}</td>
@@ -43,7 +42,7 @@
                 <form class="mt-10" method="POST" action="{{ route('order_success') }}">
                     <!-- Postal Code -->
                     @csrf
-                    <x-text-input type="hidden" name="dd" value="{{ $products_info }}" />
+                    <x-text-input type="hidden" name="dd" value="{{ json_encode($products_info) }}" />
                     <div>
                         <x-input-label for="Postal code" :value="__('Postal code')" />
 

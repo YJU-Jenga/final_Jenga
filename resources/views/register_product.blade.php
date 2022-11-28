@@ -5,6 +5,9 @@
                 <x-application-logo class="w-20 h-20 text-gray-500 fill-current" />
             </a>
         </x-slot>
+        <div>
+        @auth()
+        @if(Auth::user()->permission == 1)  
         <form method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data">
             @csrf
 
@@ -12,7 +15,8 @@
             <div>
                 <x-input-label for="name" :value="__('이름')" />
 
-                <x-text-input id="name" class="block w-full mt-1" type="text" name="name" :value="old('name')" required autofocus />
+                <x-text-input id="name" class="block w-full mt-1" type="text" name="name" :value="old('name')"
+                    required autofocus />
 
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </div>
@@ -21,7 +25,8 @@
             <div class="mt-4">
                 <x-input-label for="price" :value="__('가격')" />
 
-                <x-text-input id="price" class="block w-full mt-1" type="number" name="price" :value="old('price')" required />
+                <x-text-input id="price" class="block w-full mt-1" type="number" name="price" :value="old('price')"
+                    required />
 
                 <x-input-error :messages="$errors->get('price')" class="mt-2" />
             </div>
@@ -30,7 +35,8 @@
             <div class="mt-4">
                 <x-input-label for="description" :value="__('상품설명')" />
 
-                <x-text-input id="description" class="block w-full mt-1" type="text" name="description" :value="old('description')" required />
+                <x-text-input id="description" class="block w-full mt-1" type="text" name="description"
+                    :value="old('description')" required />
 
                 <x-input-error :messages="$errors->get('description')" class="mt-2" />
             </div>
@@ -46,15 +52,16 @@
             <div class="mt-4">
                 <x-input-label for="price" :value="__('재고')" />
 
-                <x-text-input id="stock" class="block w-full mt-1" type="number" name="stock" :value="old('stock')" required />
+                <x-text-input id="stock" class="block w-full mt-1" type="number" name="stock" :value="old('stock')"
+                    required />
 
                 <x-input-error :messages="$errors->get('price')" class="mt-2" />
             </div>
-
             <div class="mt-4">
                 <x-input-label for="img" :value="__('이미지')" />
 
-                <x-text-input type="file" id="img" class="block w-full mt-1" name="img" accept="image/*" required />
+                <x-text-input type="file" id="img" class="block w-full mt-1" name="img" accept="image/*"
+                    required />
 
                 <x-input-error :messages="$errors->get('img')" class="mt-2" />
             </div>
@@ -65,5 +72,16 @@
                 </x-primary-button>
             </div>
         </form>
+        @else
+        <a href="/products">
+            <h1>상품 등록은 관리자만 할 수 있습니다.</h1>
+        </a>
+        @endif
+        @else
+        <a href="/products">
+            <h1>상품 등록은 관리자만 할 수 있습니다.</h1>
+        </a>
+        @endauth
+        </div>
     </x-auth-card>
 </x-app-layout>

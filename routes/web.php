@@ -11,7 +11,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ItemUsePostController;
 use App\Http\Controllers\CommentController;
 
-
+ 
 
 
 /*
@@ -25,25 +25,11 @@ use App\Http\Controllers\CommentController;
 |
 */
 
-// -------------------- Product --------------------
-Route::get('products', [ProductController::class, 'productList'])->name('products.list');
-Route::get('product-register', [ProductController::class, 'create'])->name('product.add');
-Route::get('product-detail/{type}', [ProductController::class, 'productDetail'])->name('products.detail');
-Route::post('products', [ProductController::class, 'store'])->name('products.store');
-// -------------------- Product --------------------
-
-
-// -------------------- Cart --------------------
-Route::get('cart', [CartController::class, 'cartList'])->name('cart.list');
-Route::post('cart', [CartController::class, 'addToCart'])->name('cart.store');
-Route::post('update-cart', [CartController::class, 'updateCart'])->name('cart.update');
-Route::post('remove', [CartController::class, 'removeCart'])->name('cart.remove');
-Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear');
-// -------------------- Cart --------------------
-
+// -------------------- Main --------------------
 Route::get('/', function () {
     return view('main');
-})->name('/');
+})->name('/');;
+// -------------------- Main --------------------
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -53,6 +39,35 @@ Route::get('/mypage', function () {
     return view('mypage');
 })->middleware(['auth', 'verified'])->name('mypage');
 
+// -------------------- Product --------------------
+Route::get('products', [ProductController::class, 'productList'])->name('products.list');
+Route::get('product-register', [ProductController::class, 'create'])->name('product.add');
+Route::get('product-detail/{type}', [ProductController::class, 'productDetail'])->name('products.detail');
+Route::post('products', [ProductController::class, 'store'])->name('products.store');
+// -------------------- Product --------------------
+
+// -------------------- Cart --------------------
+Route::get('cart', [CartController::class, 'cartList'])->middleware(['auth', 'verified'])->name('cart.list');
+Route::post('cart', [CartController::class, 'addToCart'])->middleware(['auth', 'verified'])->name('cart.store');
+Route::post('update-cart', [CartController::class, 'updateCart'])->middleware(['auth', 'verified'])->name('cart.update');
+Route::post('remove', [CartController::class, 'removeCart'])->middleware(['auth', 'verified'])->name('cart.remove');
+Route::post('clear', [CartController::class, 'clearAllCart'])->middleware(['auth', 'verified'])->name('cart.clear');
+// -------------------- Cart --------------------
+
+// -------------------- Order --------------------
+Route::get('/order', [OrderController::class, 'index'])->middleware(['auth','verified'])->name('order');
+Route::post('order_success', [OrderController::class, 'store'])->middleware(['auth','verified'])->name('order_success');
+Route::get('/order_completed', function () {
+    return view('order_completed');
+})->name('order.completed');
+// -------------------- Order_Manage --------------------
+Route::get('/order_management', [OrderController::class, 'manage'])->middleware(['auth','verified'])->name('order_manage');
+
+Route::post('/update_order/{id}', [OrderController::class, 'update'])->middleware(['auth','verified'])->name('order_update');
+Route::post('/delete_order/{id}', [OrderController::class, 'delete'])->middleware(['auth','verified'])->name('order_delete');
+// -------------------- Order --------------------
+
+// <-------------------- Board_Posts -------------------->
 // -------------------- Item_use --------------------
 Route::get('/item_use', [ItemUsePostController::class, 'index'])->name('item_use');
 
@@ -113,17 +128,9 @@ Route::get('/updateok_product_inquiry/{id}', [ProductInquiryController::class, '
 Route::get('/delete_product_inquiry/{id}', [ProductInquiryController::class, 'deleteProductInquiry'])->middleware(['auth', 'verified'])->name('delete_product_inquiry');
 Route::get('/deleteck_product_inquiry/{id}', [ProductInquiryController::class, 'deleteck'])->middleware(['auth', 'verified'])->name('deleteck_product_inquiry');
 // -------------------- Product_inquiry --------------------
-
-Route::get('/order', [OrderController::class, 'index'])->middleware(['auth', 'verified'])->name('order');
-
-Route::post('/order_success', [OrderController::class, 'store'])->middleware(['auth', 'verified'])->name('order_success');
-Route::get('/order_completed', function () {
-    return view('order_completed');
-});
-
-
 // -------------------- comment_write --------------------
 Route::get('/comment_write', [CommentController::class, 'create'])->middleware(['auth', 'verified'])->name('comment_write');
 Route::post('/comment_write', [CommentController::class, 'store'])->middleware(['auth', 'verified'])->name('comment_write');
+// <-------------------- Board_Posts -------------------->
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';
