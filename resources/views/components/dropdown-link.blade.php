@@ -1,4 +1,4 @@
-@props(['align' => 'right', 'width' => '48', 'contentClasses' => 'py-1 bg-white'])
+{{-- @props(['align' => 'right', 'width' => '48', 'contentClasses' => 'py-1 bg-white'])
 
 @php
 switch ($align) {
@@ -23,8 +23,8 @@ switch ($width) {
 
 <div class="relative" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
     <div @click="open = ! open">
-        {{ $trigger }}
-    </div>
+        {{-- {{ $trigger }} --}}
+    {{-- </div>
 
     <div x-show="open"
             x-transition:enter="transition ease-out duration-200"
@@ -37,8 +37,8 @@ switch ($width) {
             style="display: none;"
             @click="open = false">
         <div class="rounded-md ring-1 ring-black ring-opacity-5 {{ $contentClasses }}">
-            {{ $content }}
-        </div>
+            {{-- {{ $content }} --}}
+        {{-- </div>
     </div>
-</div>
-{{-- <a {{ $attributes->merge(['class' => 'block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out']) }}>{{ $slot }}</a> --}}
+</div>  --}}
+<a {{ $attributes->merge(['class' => 'block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out']) }}>{{ $slot }}</a>
