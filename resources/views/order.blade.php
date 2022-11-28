@@ -45,13 +45,13 @@
                     <x-text-input type="hidden" name="dd" value="{{ json_encode($products_info) }}" />
                     <div>
                         <x-input-label for="Postal code" :value="__('우편번호')" />
-                        <div class="flex items-center">
-                        <x-text-input id="postal_code" class="block  mt-1" type="text" placeholder="우편번호" name="postal_code"
-                            :value="old('postal_code')" required/>
-                        <x-primary-button class="ml-2" onclick="execDaumPostcode()">
-                            {{ __('주소 검색') }}
-                        </x-primary-button>
-                        </div>
+                            <div class="flex items-center">
+                            <x-text-input id="postal_code" class="block  mt-1" type="text" placeholder="우편번호" name="postal_code"
+                                :value="old('postal_code')" required readonly/>
+                            <x-primary-button class="ml-2" onclick="execDaumPostcode()">
+                                {{ __('주소 검색') }}
+                            </x-primary-button>
+                            </div>
                         <x-input-error :messages="$errors->get('postal_code')" class="mt-2" />
                     </div>
 
@@ -60,11 +60,11 @@
                         <label class="block font-medium text-sm text-gray-700'" for="roadAddress">주소</label>
                         <div class ="flex items-center">
                             <input type="text" id="roadAddress" class = 'rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50' 
-                            name="roadAddress" placeholder="도로명주소" required>
+                            name="roadAddress" placeholder="도로명주소" required readonly>
                             <input type="text" id="detailAddress" class = 'rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'
                             name="detailAddress" placeholder="상세주소">
                             <input type="text" id="extraAddress"class = 'rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'
-                            name="extraAddress" placeholder="참고항목">
+                            name="extraAddress" placeholder="참고항목" readonly>
                          </div>
                     </div>
 
@@ -81,10 +81,14 @@
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
          function execDaumPostcode() {
+        event.preventDefault();
+        document.getElementById('postal_code').removeAttribute('readonly') 
+        document.getElementById("roadAddress").removeAttribute('readonly') 
+        document.getElementById("extraAddress").removeAttribute('readonly') 
         new daum.Postcode({
             oncomplete: function(data) {
                 // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
+                
                 // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
                 // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
                 var roadAddr = data.roadAddress; // 도로명 주소 변수
@@ -115,6 +119,9 @@
                 } else {
                     document.getElementById("extraAddress").value = '';
                 }
+                document.getElementById('postal_code').setAttribute('readonly', 'readonly')
+                document.getElementById("roadAddress").setAttribute('readonly', 'readonly')
+                document.getElementById("extraAddress").setAttribute('readonly', 'readonly')
             }
         }).open();
     }
