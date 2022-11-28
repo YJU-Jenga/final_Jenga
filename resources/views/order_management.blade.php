@@ -1,11 +1,11 @@
 <?php
 //주문번호, 주문일, 상품이름, 가격, 총가격, 주문상태
-$orders = DB::table('orders')->select(['orders.id', 'orders.user_id', 'orders.created_at', 'products.name', 'products.price', 'count',  'state'])
+$orders = DB::table('orders')->select(['orders.id', 'orders.user_id', 'orders.postal_code', 'orders.address','orders.created_at', 'products.name', 'products.price', 'count',  'state'])
 ->leftJoin('products', 'product_id', '=', 'products.id')
 ->orderBy('orders.created_at','desc')
 ->get();
 $page = 10;
-$orders_page = DB::table('orders')->select(['orders.id', 'orders.user_id', 'orders.created_at', 'products.name', 'products.price', 'count',  'state'])
+$orders_page = DB::table('orders')->select(['orders.id', 'orders.user_id', 'orders.postal_code', 'orders.address', 'orders.created_at', 'products.name', 'products.price', 'count',  'state'])
 ->leftJoin('products', 'product_id', '=', 'products.id')
 ->orderBy('orders.created_at','desc')
 ->paginate($page, $columns = ['*'], $pageName = 'orders_page');
@@ -24,7 +24,10 @@ $orders_page = DB::table('orders')->select(['orders.id', 'orders.user_id', 'orde
                         <th>주문일</th>
                         <th>상품이름</th>
                         <th>가격</th>
+                        <th>개수</th>
                         <th>총가격</th>
+                        <th>우편번호</th>
+                        <th>주소</th>
                         <th>주문상태</th>
                         <th>주문관리</th>
                     @foreach ($orders_page as $order)
@@ -33,7 +36,10 @@ $orders_page = DB::table('orders')->select(['orders.id', 'orders.user_id', 'orde
                         <td>{{ $order->created_at }}</td>
                         <td>{{ $order->name }}</td>
                         <td>{{ $order->price }}원</td>
+                        <td>{{ $order->count }}개</td>
                         <td>{{ ($order->price * $order->count)}}원</td>
+                        <td>{{ $order->postal_code }}</td>
+                        <td>{{ $order->address }}</td>
                         <td>{{ $order->state? '주문 처리 완료' : '주문 접수 중' }}</td>
                         <td>
                             <form method="POST" action="/update_order/{{ $order->id }}">
