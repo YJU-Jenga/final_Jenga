@@ -8,7 +8,7 @@ $post = $posts[0];
 <x-app-layout>
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-      {{ __('Q&A 수정') }}
+      {{ __('상품 문의 수정') }}
     </h2>
   </x-slot>
 

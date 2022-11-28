@@ -2,6 +2,15 @@
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
             {{ __('상품') }}
+            @auth()
+            @if(Auth::user()->permission == 1)
+            <a href="/product-register">
+                <x-primary-button class="ml-4">
+                    {{ __('등록') }}
+                </x-primary-button>
+            </a>
+            @endif
+            @endauth
         </h2>
     </x-slot>
     <div class="container px-12 py-8 mx-auto">

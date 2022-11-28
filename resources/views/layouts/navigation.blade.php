@@ -41,6 +41,15 @@
                     </svg>
                     <span>{{ Cart::getTotalQuantity() }}</span>
                 </a>
+                @auth
+                @if(Auth::user()->permission == 1)  
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('order_manage')" :active="request()->routeIs('order_manage')">
+                        {{ __('주문 관리') }}
+                    </x-nav-link>
+                </div>
+                @endif
+                @endauth
             </div>
 
             @auth
