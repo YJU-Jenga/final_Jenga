@@ -41,15 +41,6 @@
                     </svg>
                     <span>{{ Cart::getTotalQuantity() }}</span>
                 </a>
-                @auth
-                @if(Auth::user()->permission == 1)  
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('order_manage')" :active="request()->routeIs('order_manage')">
-                        {{ __('주문 관리') }}
-                    </x-nav-link>
-                </div>
-                @endif
-                @endauth
             </div>
 
             @auth
@@ -79,7 +70,7 @@
 
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                
+
                                 <x-dropdown-link :href="route('logout')"
                                         onclick="event.preventDefault();
                                                     this.closest('form').submit();">
@@ -87,7 +78,7 @@
                                 </x-dropdown-link>
                             </form>
                         @else
-                        @endauth         
+                        @endauth
                     </x-slot>
                 </x-dropdown>
             </div>
@@ -133,7 +124,7 @@
                 <div class="text-base font-medium text-gray-800">{{ Auth::user()->name }}</div>
                 <div class="text-sm font-medium text-gray-500">{{ Auth::user()->email }}</div>
             @else
-            @endauth   
+            @endauth
             </div>
 
             <div class="mt-3 space-y-1">

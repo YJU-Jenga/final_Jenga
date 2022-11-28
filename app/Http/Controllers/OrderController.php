@@ -12,11 +12,13 @@ class OrderController extends Controller
     //
     private $cart;
 
-    public function __construct(cart $cart) {
+    public function __construct(cart $cart)
+    {
         $this->cart = $cart;
     }
 
-    public function index() {
+    public function index()
+    {
         $carts = DB::table('carts')->get();
         $products_info = DB::table('carts')
             ->join('products', 'carts.product_id', '=', 'products.id')
@@ -36,12 +38,12 @@ class OrderController extends Controller
         // Request 에 대한 유효성 검사입니다, 다양한 종류가 있기에 공식문서를 보시는 걸 추천드립니다.
         // 유효성에 걸린 에러는 errors 에 담깁니다.
         $input = $request->validate([
-            'address' => 'required',
+            'roadAddress' => 'required',
             'postal_code' => 'required',
             'dd' => 'required'
         ]);
         $postal_code = $request->postal_code;
-        $address = $request->address;
+        $address = $request->roadAddress . " " . $request->extraAddress . " " . $request->detailAddress;
 
         $data = $request->get('dd');
 
@@ -72,31 +74,33 @@ class OrderController extends Controller
         }
 
         DB::table('carts')
-//            ->where('product_id', $product_id)
+            //            ->where('product_id', $product_id)
             ->where('user_id', Auth::user()->id)
             ->delete();
 
 
         return redirect()->route('order.completed');
-
-
     }
 
-    public function manage() {
+    public function manage()
+    {
         return view('order_management');
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         DB::table('orders')->where('id', $id)->update(['state' => 1]);
         return view('order_management');
     }
 
-    public function delete(Request $request, $id){
+    public function delete(Request $request, $id)
+    {
         DB::table('orders')->where('id', $id)->delete();
         return view('order_management');
     }
 
-    public function create(){
+    public function create()
+    {
         return view('order_success');
     }
 }

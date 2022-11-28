@@ -7,7 +7,7 @@ use \Illuminate\Support\Facades\DB;
 $page = 10;
 $posts_page = DB::table('posts')->select(['posts.id', 'posts.title', 'users.name', 'posts.hit', 'posts.created_at', 'posts.state', 'posts.secret', 'posts.password'])
   ->leftJoin('users', 'posts.user_id', '=', 'users.id')
-  ->where('posts.board_id', '=', 2)
+  ->where('posts.board_id', '=', 1)
   ->orderBy('posts.created_at', 'desc')
   ->paginate($page);
 ?>
@@ -121,7 +121,7 @@ $posts_page = DB::table('posts')->select(['posts.id', 'posts.title', 'users.name
             <th>답변여부</th>
             @foreach ($posts_page as $post)
             @if($post->secret)
-            <tr onclick="location.href='view_q&a/{{ $post->id }}'" style="cursor:hand">
+            <tr onclick="location.href='view_product_inquiry/{{ $post->id }}'" style="cursor:hand">
               <td>🔒︎{{ $post->title }}</td>
               <td>{{ $post->name }}</td>
               <td>{{ $post->hit }}</td>
@@ -129,7 +129,7 @@ $posts_page = DB::table('posts')->select(['posts.id', 'posts.title', 'users.name
               <td>{{ $post->state? '답변 완료' : '답변 대기' }}</td>
             </tr>
             @else
-            <tr onclick="location.href='view_q&a/{{ $post->id }}'" style="cursor:hand">
+            <tr onclick="location.href='view_product_inquiry/{{ $post->id }}'" style="cursor:hand">
               <td>{{ $post->title }}</td>
               <td>{{ $post->name }}</td>
               <td>{{ $post->hit }}</td>
@@ -160,7 +160,7 @@ $posts_page = DB::table('posts')->select(['posts.id', 'posts.title', 'users.name
         </div>
       </div>
 
-      <a href="{{ route('write_q&a') }}">
+      <a href="{{ route('write_product_inquiry') }}">
         <div class="flex items-center justify-end mt-4">
           <x-primary-button class="ml-4">
             {{ __('작성') }}

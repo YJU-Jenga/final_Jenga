@@ -160,6 +160,7 @@ class ItemUsePostController extends Controller
 
     public function deleteItemUse(Request $request, $id)
     {
+        $comments = DB::table('comments')->where('post_id', $id)->delete();
         $posts = DB::table('posts')->where('id', $id)->delete();
         return view('board.deleteok_item_use');
     }
