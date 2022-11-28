@@ -60,4 +60,4 @@ use \Illuminate\Support\Facades\DB;
       </div>
     </div>
   </div>
-</x-app-layout>
+</x-app-layout>ㄴ

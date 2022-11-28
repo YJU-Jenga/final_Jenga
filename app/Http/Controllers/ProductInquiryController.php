@@ -112,7 +112,7 @@ class ProductInquiryController extends Controller
     public function updateProductInquiry(Request $request, $id)
     {
         $posts = DB::table('posts')
-            ->select(['posts.id', 'posts.title', 'posts.content', 'posts.secret', 'posts.password'])
+            ->select(['posts.id', 'posts.board_id', 'posts.title', 'posts.content', 'posts.secret', 'posts.password'])
             ->leftJoin('users', 'posts.user_id', '=', 'users.id')
             ->where('posts.id', $id)
             ->get();

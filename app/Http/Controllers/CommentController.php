@@ -30,12 +30,17 @@ class CommentController extends Controller
         'created_at' => now(),
         'updated_at' => now(),
       ]);
-    if($request->id == 1){
-      return redirect('/item_use');
-    } else if($request->id == 2){
+
+// 1 = 상품 문의 게시판
+// 2 = Q & A 게시판
+// 3 = 후기 게시판
+
+    if($request->board_id == 1){
+      return redirect('/product_inquiry');
+    } else if($request->board_id == 2){
       return redirect('/q&a');
     } else {
-      return redirect('/product_inquiry');
+      return redirect('/item_use');
     }
   }
 }

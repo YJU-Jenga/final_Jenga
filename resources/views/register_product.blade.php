@@ -5,6 +5,9 @@
                 <x-application-logo class="w-20 h-20 text-gray-500 fill-current" />
             </a>
         </x-slot>
+        <div>
+        @auth()
+        @if(Auth::user()->permission == 1)  
         <form method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data">
             @csrf
 
@@ -69,5 +72,16 @@
                 </x-primary-button>
             </div>
         </form>
+        @else
+        <a href="/products">
+            <h1>상품 등록은 관리자만 할 수 있습니다.</h1>
+        </a>
+        @endif
+        @else
+        <a href="/products">
+            <h1>상품 등록은 관리자만 할 수 있습니다.</h1>
+        </a>
+        @endauth
+        </div>
     </x-auth-card>
 </x-app-layout>

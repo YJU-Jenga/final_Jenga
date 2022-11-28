@@ -82,6 +82,20 @@ class OrderController extends Controller
 
     }
 
+    public function manage() {
+        return view('order_management');
+    }
+
+    public function update(Request $request, $id){
+        DB::table('orders')->where('id', $id)->update(['state' => 1]);
+        return view('order_management');
+    }
+
+    public function delete(Request $request, $id){
+        DB::table('orders')->where('id', $id)->delete();
+        return view('order_management');
+    }
+
     public function create(){
         return view('order_success');
     }

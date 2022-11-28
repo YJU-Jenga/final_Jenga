@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use \Illuminate\Support\Facades\DB;
 
 $post = $posts[0];
+// dd($post);
 
 $comments = DB::table('comments')->select(['comments.id', 'comments.content', 'comments.created_at', 'users.name'])
   ->leftJoin('users', 'comments.user_id', '=', 'users.id')
@@ -143,7 +144,6 @@ $comments = DB::table('comments')->select(['comments.id', 'comments.content', 'c
             </div>
             @endforeach
           </div>
-          @if(Auth::user()->permission == 1 && $post->state == 0)
           @auth()
           <div class="w-4/5 mx-auto mt-6 text-right">
             <form method="post" action="/comment_write">
@@ -151,12 +151,12 @@ $comments = DB::table('comments')->select(['comments.id', 'comments.content', 'c
               <textarea name="content" id="content" class="w-full h-32 border border-blue-300 resize-none" Placeholder="답글을 작성해 주세요." required></textarea>
               <x-primary-button class="mt-4 ml-4">
                 <input type="hidden" id="id" name="id" value="{{ $post->id }}">
+                <!-- <input type="hidden" id="board_id" name="board_id" value="{{ $post->board_id }}"> -->
                 <input type="submit" value="작성">
               </x-primary-button>
             </form>
           </div>
           @endauth
-          @endif
         </div>
       </div>
       <div class="flex items-center justify-end mt-4">

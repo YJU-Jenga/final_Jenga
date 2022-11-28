@@ -60,6 +60,11 @@ Route::post('order_success', [OrderController::class, 'store'])->middleware(['au
 Route::get('/order_completed', function () {
     return view('order_completed');
 })->name('order.completed');
+// -------------------- Order_Manage --------------------
+Route::get('/order_management', [OrderController::class, 'manage'])->middleware(['auth','verified'])->name('order_manage');
+
+Route::post('/update_order/{id}', [OrderController::class, 'update'])->middleware(['auth','verified'])->name('order_update');
+Route::post('/delete_order/{id}', [OrderController::class, 'delete'])->middleware(['auth','verified'])->name('order_delete');
 // -------------------- Order --------------------
 
 // <-------------------- Board_Posts -------------------->

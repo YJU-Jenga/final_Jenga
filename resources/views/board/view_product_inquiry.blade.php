@@ -143,20 +143,21 @@ $comments = DB::table('comments')->select(['comments.id', 'comments.content', 'c
             </div>
             @endforeach
           </div>
-          @if(Auth::user()->permission == 1 && $post->state == 0)
           @auth()
+          @if(Auth::user()->permission == 1 && $post->state == 0)
           <div class="w-4/5 mx-auto mt-6 text-right">
             <form method="post" action="/comment_write">
               @csrf
               <textarea name="content" id="content" class="w-full h-32 border border-blue-300 resize-none" Placeholder="답글을 작성해 주세요." required></textarea>
               <x-primary-button class="mt-4 ml-4">
                 <input type="hidden" id="id" name="id" value="{{ $post->id }}">
+                <input type="hidden" id="board_id" name="board_id" value="{{ $post->board_id }}">
                 <input type="submit" value="작성">
               </x-primary-button>
             </form>
           </div>
-          @endauth
           @endif
+          @endauth
         </div>
       </div>
       <div class="flex items-center justify-end mt-4">
