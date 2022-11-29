@@ -18,7 +18,7 @@ $comments = DB::table('comments')->select(['comments.id', 'comments.content', 'c
     <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
       <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
         <div class="p-6 bg-white border-b border-gray-200">
-            <h2 class="ml-2 mt-4 mb-8 text-xl font-semibold leading-tight text-gray-800">
+            <h2 class="mt-4 mb-8 ml-2 text-xl font-semibold leading-tight text-gray-800">
                 {{ __('상품 문의') }}
             </h2>
 
@@ -49,7 +49,7 @@ $comments = DB::table('comments')->select(['comments.id', 'comments.content', 'c
 
             <div class="">
                 @foreach ($comments as $comment)
-                    <div class="ml-2 border-b-amber-500 bg-gray-100 p-5">
+                    <div class="p-5 ml-2 bg-gray-100 border-b-amber-500">
                         <h1>{{ $comment->name }}</h1>
                         <h1 class="mb-3">{{ $comment->created_at }}</h1>
                         <div class="flex">
@@ -60,6 +60,7 @@ $comments = DB::table('comments')->select(['comments.id', 'comments.content', 'c
                 @endforeach
             </div>
             @auth()
+            @if($comments->count() < 1)
                 @if(Auth::user()->permission == 1 && $post->state == 0)
                     <div class="px-2 mx-auto mt-6 text-right">
                         <form method="post" action="/comment_write">
@@ -73,6 +74,7 @@ $comments = DB::table('comments')->select(['comments.id', 'comments.content', 'c
                         </form>
                     </div>
                 @endif
+            @endif
             @endauth
         </div>
       </div>
