@@ -15,7 +15,7 @@ class PostsTableSeeder extends Seeder
     public function run()
     {
         //
-        for($i = 0; $i < 30; $i++) {
+        for($i = 0; $i < 130; $i++) {
             $post = [
                 'user_id' => 1,
                 'board_id' => 1,
@@ -27,7 +27,7 @@ class PostsTableSeeder extends Seeder
             ];
             \Illuminate\Support\Facades\DB::table('posts')->insert($post);
         }
-        for($i = 0; $i < 30; $i++) {
+        for($i = 0; $i < 130; $i++) {
             $post = [
                 'user_id' => 1,
                 'board_id' => 2,
@@ -39,7 +39,7 @@ class PostsTableSeeder extends Seeder
             ];
             \Illuminate\Support\Facades\DB::table('posts')->insert($post);
         }
-        for($i = 0; $i < 30; $i++) {
+        for($i = 0; $i < 130; $i++) {
             $post = [
                 'user_id' => 1,
                 'board_id' => 3,

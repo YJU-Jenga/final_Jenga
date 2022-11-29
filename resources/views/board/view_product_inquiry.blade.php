@@ -144,6 +144,7 @@ $comments = DB::table('comments')->select(['comments.id', 'comments.content', 'c
             @endforeach
           </div>
           @auth()
+          @if($comments->count() < 1)
           @if(Auth::user()->permission == 1 && $post->state == 0)
           <div class="w-4/5 mx-auto mt-6 text-right">
             <form method="post" action="/comment_write">
@@ -156,6 +157,7 @@ $comments = DB::table('comments')->select(['comments.id', 'comments.content', 'c
               </x-primary-button>
             </form>
           </div>
+          @endif
           @endif
           @endauth
         </div>

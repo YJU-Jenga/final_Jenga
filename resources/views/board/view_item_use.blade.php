@@ -151,7 +151,7 @@ $comments = DB::table('comments')->select(['comments.id', 'comments.content', 'c
               <textarea name="content" id="content" class="w-full h-32 border border-blue-300 resize-none" Placeholder="답글을 작성해 주세요." required></textarea>
               <x-primary-button class="mt-4 ml-4">
                 <input type="hidden" id="id" name="id" value="{{ $post->id }}">
-                <!-- <input type="hidden" id="board_id" name="board_id" value="{{ $post->board_id }}"> -->
+                <input type="hidden" id="board_id" name="board_id" value="{{ $post->board_id }}">
                 <input type="submit" value="작성">
               </x-primary-button>
             </form>
