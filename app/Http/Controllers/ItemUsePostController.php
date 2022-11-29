@@ -105,7 +105,7 @@ class ItemUsePostController extends Controller
             ->increment('posts.hit', 1); // 컬럼값 1 증가 (조회수 증가)
 
         $posts = DB::table('posts')
-            ->select(['posts.id', 'posts.user_id','posts.board_id', 'posts.title', 'posts.content', 'users.name', 'posts.hit', 'posts.created_at', 'posts.state', 'posts.img'])
+            ->select(['posts.id', 'posts.board_id', 'posts.title', 'posts.content', 'users.name', 'posts.hit', 'posts.created_at', 'posts.state', 'posts.img'])
             ->leftJoin('users', 'posts.user_id', '=', 'users.id')
             ->where('posts.id', $id)
             ->get();
@@ -160,6 +160,7 @@ class ItemUsePostController extends Controller
 
     public function deleteItemUse(Request $request, $id)
     {
+        $comments = DB::table('comments')->where('post_id', $id)->delete();
         $posts = DB::table('posts')->where('id', $id)->delete();
         return view('board.deleteok_item_use');
     }

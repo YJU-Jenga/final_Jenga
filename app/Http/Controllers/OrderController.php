@@ -12,11 +12,13 @@ class OrderController extends Controller
     //
     private $cart;
 
-    public function __construct(cart $cart) {
+    public function __construct(cart $cart)
+    {
         $this->cart = $cart;
     }
 
-    public function index() {
+    public function index()
+    {
         $carts = DB::table('carts')->get();
         $products_info = DB::table('carts')
             ->join('products', 'carts.product_id', '=', 'products.id')
@@ -72,31 +74,33 @@ class OrderController extends Controller
         }
 
         DB::table('carts')
-//            ->where('product_id', $product_id)
+            //            ->where('product_id', $product_id)
             ->where('user_id', Auth::user()->id)
             ->delete();
 
 
         return redirect()->route('order.completed');
-
-
     }
 
-    public function manage() {
+    public function manage()
+    {
         return view('order_management');
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         DB::table('orders')->where('id', $id)->update(['state' => 1]);
         return view('order_management');
     }
 
-    public function delete(Request $request, $id){
+    public function delete(Request $request, $id)
+    {
         DB::table('orders')->where('id', $id)->delete();
         return view('order_management');
     }
 
-    public function create(){
+    public function create()
+    {
         return view('order_success');
     }
 }
