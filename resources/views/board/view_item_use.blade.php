@@ -141,6 +141,13 @@ $comments = DB::table('comments')->select(['comments.id', 'comments.content', 'c
               <h1>작성자 : {{ $comment->name }}</h1>
               <h1>내용 : {{ $comment->content }}</h1>
               <h1>작성일 :{{ $comment->created_at }}</h1>
+              <form method="get" action="/comment_delete/{{ $comment->id }}">
+                <input type="hidden" id="id" name="id" value="{{ $post->id }}">
+                <input type="hidden" id="board_id" name="board_id" value="{{ $post->board_id }}">
+                <x-primary-button class="ml-4">
+                  {{ __('삭제') }}
+                </x-primary-button>
+              </form>
             </div>
             @endforeach
           </div>

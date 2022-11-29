@@ -11,7 +11,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ItemUsePostController;
 use App\Http\Controllers\CommentController;
 
- 
+
 
 
 /*
@@ -39,6 +39,10 @@ Route::get('/mypage', function () {
     return view('mypage');
 })->middleware(['auth', 'verified'])->name('mypage');
 
+Route::get('/customizing', function () {
+    return view('customizing');
+})->middleware(['auth', 'verified'])->name('customizing');
+
 // -------------------- Product --------------------
 Route::get('products', [ProductController::class, 'productList'])->name('products.list');
 Route::get('product-register', [ProductController::class, 'create'])->name('product.add');
@@ -55,16 +59,16 @@ Route::post('clear', [CartController::class, 'clearAllCart'])->middleware(['auth
 // -------------------- Cart --------------------
 
 // -------------------- Order --------------------
-Route::get('/order', [OrderController::class, 'index'])->middleware(['auth','verified'])->name('order');
-Route::post('order_success', [OrderController::class, 'store'])->middleware(['auth','verified'])->name('order_success');
+Route::get('/order', [OrderController::class, 'index'])->middleware(['auth', 'verified'])->name('order');
+Route::post('order_success', [OrderController::class, 'store'])->middleware(['auth', 'verified'])->name('order_success');
 Route::get('/order_completed', function () {
     return view('order_completed');
 })->name('order.completed');
 // -------------------- Order_Manage --------------------
-Route::get('/order_management', [OrderController::class, 'manage'])->middleware(['auth','verified'])->name('order_manage');
+Route::get('/order_management', [OrderController::class, 'manage'])->middleware(['auth', 'verified'])->name('order_manage');
 
-Route::post('/update_order/{id}', [OrderController::class, 'update'])->middleware(['auth','verified'])->name('order_update');
-Route::post('/delete_order/{id}', [OrderController::class, 'delete'])->middleware(['auth','verified'])->name('order_delete');
+Route::post('/update_order/{id}', [OrderController::class, 'update'])->middleware(['auth', 'verified'])->name('order_update');
+Route::post('/delete_order/{id}', [OrderController::class, 'delete'])->middleware(['auth', 'verified'])->name('order_delete');
 // -------------------- Order --------------------
 
 // <-------------------- Board_Posts -------------------->
@@ -133,4 +137,6 @@ Route::get('/comment_write', [CommentController::class, 'create'])->middleware([
 Route::post('/comment_write', [CommentController::class, 'store'])->middleware(['auth', 'verified'])->name('comment_write');
 // <-------------------- Board_Posts -------------------->
 
-require __DIR__.'/auth.php';
+Route::get('/comment_delete/{id}', [CommentController::class, 'delete'])->middleware(['auth', 'verified'])->name('comment_delete');
+
+require __DIR__ . '/auth.php';
