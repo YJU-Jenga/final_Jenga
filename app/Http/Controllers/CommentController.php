@@ -43,4 +43,19 @@ class CommentController extends Controller
       return redirect('/item_use');
     }
   }
+  public function updateComment(Request $request, $id)
+    {
+        $comments = DB::table('comments')
+            ->select(['comments.id', 'comments.title', 'comments.content', 'comments.secret', 'comments.password'])
+            ->leftJoin('users', 'comments.user_id', '=', 'users.id')
+            ->where('comments.id', $id)
+            ->get();
+
+        return view('board.update_item_use', compact('comments'));
+    }
+    public function deleteComment(Request $request, $id)
+    {
+        $comments = DB::table('comments')->where('post_id', $id)->delete();
+        return view('board.item_use');
+    }
 }

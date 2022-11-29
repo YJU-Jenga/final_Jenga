@@ -131,6 +131,9 @@ Route::get('/deleteck_product_inquiry/{id}', [ProductInquiryController::class, '
 // -------------------- comment_write --------------------
 Route::get('/comment_write', [CommentController::class, 'create'])->middleware(['auth', 'verified'])->name('comment_write');
 Route::post('/comment_write', [CommentController::class, 'store'])->middleware(['auth', 'verified'])->name('comment_write');
+// -------------------- comment_update --------------------
+// -------------------- comment_delete --------------------
+
 // <-------------------- Board_Posts -------------------->
 
 require __DIR__.'/auth.php';
