@@ -39,7 +39,7 @@ $page = 10;
                                 <div x-show="open" style="display: none;" @click="display: block;">
                                     <div class="py-1 bg-white rounded-md ring-1 ring-black ring-opacity-5">
                                         <?php
-                                        $posts = DB::table('posts')->select(['posts.title', 'users.name', 'posts.hit', 'posts.created_at', 'posts.state'])
+                                        $pi_posts = DB::table('posts')->select(['posts.title', 'users.name', 'posts.hit', 'posts.created_at', 'posts.state'])
                                             ->leftJoin('users', 'posts.user_id', '=', 'users.id')
                                             ->where('posts.user_id', '=', Auth::user()->id)
                                             ->where('posts.board_id', '=', 1)
@@ -47,15 +47,15 @@ $page = 10;
                                             ->get();
 
 
-                                        $posts_page = DB::table('posts')->select(['posts.title', 'users.name', 'posts.hit', 'posts.created_at', 'posts.state'])
+                                        $pi_posts_page = DB::table('posts')->select(['posts.title', 'users.name', 'posts.hit', 'posts.created_at', 'posts.state'])
                                             ->leftJoin('users', 'posts.user_id', '=', 'users.id')
                                             ->where('posts.user_id', '=', Auth::user()->id)
                                             ->where('posts.board_id', '=', 1)
                                             ->orderBy('posts.created_at', 'desc')
                                             ->paginate($page, $columns = ['*'], $pageName = 'product_inquiry_page');
                                         ?>
-                                        <!-- 총 게시글 수 {{ $posts->count() }} -->
-                                        @if($posts->count() > 0)
+                                        <!-- 총 게시글 수 {{ $pi_posts->count() }} -->
+                                        @if($pi_posts->count() > 0)
                                         <table class="table-auto">
                                             <th>제목</th>
                                             <th>작성자</th>
@@ -63,30 +63,18 @@ $page = 10;
                                             <th>작성일</th>
                                             <th>답변여부</th>
 
-                                            @foreach ($posts_page as $post)
-                                            <tr>
-                                                <td>{{ $post->title }}</td>
-                                                <td>{{ $post->name }}</td>
-                                                <td>{{ $post->hit }}</td>
-                                                <td>{{ $post->created_at }}</td>
-                                                <td>{{ $post->state? '답변 완료' : '답변 대기' }}</td>
+                                            @foreach ($pi_posts_page as $pi_post)
+                                            <tr onclick="location.href='view_product_inquiry/{{ $pi_post->id }}'" style="cursor:hand">
+                                                <td>{{ $pi_post->title }}</td>
+                                                <td>{{ $pi_post->name }}</td>
+                                                <td>{{ $pi_post->hit }}</td>
+                                                <td>{{ $pi_post->created_at }}</td>
+                                                <td>{{ $pi_post->state? '답변 완료' : '답변 대기' }}</td>
                                             </tr>
                                             @endforeach
                                         </table>
                                         <div style="text-align: center;">
-                                            @if ($posts_page->currentPage() > 1)
-                                            <a href="{{ $posts_page->previousPageUrl() }}"><i class="fa fa-chevron-left" aria-hidden="true">←</i></a>
-                                            @endif
-                                            @for($i = 1; $i <=$posts_page->lastPage(); $i++)
-                                                @if($i == $posts_page->currentPage())
-                                                <a class="text-xl font-semibold" href="{{$posts_page->url($i)}}">{{$i}}</a>
-                                                @else
-                                                <a href="{{$posts_page->url($i)}}">{{$i}}</a>
-                                                @endif
-                                                @endfor
-                                                @if ($posts_page->currentPage() < $posts_page->lastPage() )
-                                                    <a href="{{$posts_page->nextPageUrl()}}"><i class="fa fa-chevron-right" aria-hidden="true"></i>→</a>
-                                                    @endif
+                                            {{ $pi_posts_page->onEachSide(2)->links() }}
                                         </div>
                                         @else
                                         <p>게시글이 존재 하지 않습니다.</p>
@@ -124,7 +112,7 @@ $page = 10;
                                                 ->paginate($page, $columns = ['*'], $pageName = 'orders_page');
 
                                             ?>
-                                            <!-- 총 게시글 수 {{ $posts->count() }} -->
+                                            <!-- 총 게시글 수 {{ $orders->count() }} -->
                                             @if($orders->count() > 0)
                                             <table class="table-auto">
                                                 <th>주문번호</th>
@@ -146,19 +134,7 @@ $page = 10;
                                                 @endforeach
                                             </table>
                                             <div style="text-align: center;">
-                                                @if ($orders_page->currentPage() > 1)
-                                                <a href="{{ $orders_page->previousPageUrl() }}"><i class="fa fa-chevron-left" aria-hidden="true">←</i></a>
-                                                @endif
-                                                @for($i = 1; $i <=$orders_page->lastPage(); $i++)
-                                                    @if($i == $orders_page->currentPage())
-                                                    <a class="text-xl font-semibold" href="{{$orders_page->url($i)}}">{{$i}}</a>
-                                                    @else
-                                                    <a href="{{$orders_page->url($i)}}">{{$i}}</a>
-                                                    @endif
-                                                    @endfor
-                                                    @if ($orders_page->currentPage() < $orders_page->lastPage() )
-                                                        <a href="{{$orders_page->nextPageUrl()}}"><i class="fa fa-chevron-right" aria-hidden="true"></i>→</a>
-                                                        @endif
+                                                {{ $orders_page->onEachSide(2)->links() }}
                                             </div>
                                             @else
                                             <p>주문 내역이 존재 하지 않습니다.</p>
@@ -182,22 +158,22 @@ $page = 10;
                                     <div div x-show="open" style="display: none;" @click="display: block;">
                                         <div class="py-1 bg-white rounded-md ring-1 ring-black ring-opacity-5">
                                             <?php
-                                            $posts = DB::table('posts')->select(['posts.title', 'users.name', 'posts.hit', 'posts.created_at', 'posts.state'])
+                                            $qna_posts = DB::table('posts')->select(['posts.title', 'users.name', 'posts.hit', 'posts.created_at', 'posts.state'])
                                                 ->leftJoin('users', 'posts.user_id', '=', 'users.id')
                                                 ->where('posts.user_id', '=', Auth::user()->id)
                                                 ->where('posts.board_id', '=', 2)
                                                 ->orderBy('posts.created_at', 'desc')
                                                 ->get();
 
-                                            $posts_page = DB::table('posts')->select(['posts.title', 'users.name', 'posts.hit', 'posts.created_at', 'posts.state'])
+                                            $qna_posts_page = DB::table('posts')->select(['posts.title', 'users.name', 'posts.hit', 'posts.created_at', 'posts.state'])
                                                 ->leftJoin('users', 'posts.user_id', '=', 'users.id')
                                                 ->where('posts.user_id', '=', Auth::user()->id)
                                                 ->where('posts.board_id', '=', 2)
                                                 ->orderBy('posts.created_at', 'desc')
                                                 ->paginate($page, $columns = ['*'], $pageName = 'q&a_page');
                                             ?>
-                                            <!-- 총 게시글 수 {{ $posts->count() }} -->
-                                            @if($posts->count() > 0)
+                                            <!-- 총 게시글 수 {{ $qna_posts->count() }} -->
+                                            @if($qna_posts->count() > 0)
                                             <table class="table-auto">
                                                 <th>제목</th>
                                                 <th>작성자</th>
@@ -205,30 +181,18 @@ $page = 10;
                                                 <th>작성일</th>
                                                 <th>답변여부</th>
 
-                                                @foreach ($posts_page as $post)
-                                                <tr>
-                                                    <td>{{ $post->title }}</td>
-                                                    <td>{{ $post->name }}</td>
-                                                    <td>{{ $post->hit }}</td>
-                                                    <td>{{ $post->created_at }}</td>
-                                                    <td>{{ $post->state? '답변 완료' : '답변 대기' }}</td>
+                                                @foreach ($qna_posts_page as $qna_post)
+                                                <tr onclick="location.href='view_q&a/{{ $qna_post->id }}'" style="cursor:hand">
+                                                    <td>{{ $qna_post->title }}</td>
+                                                    <td>{{ $qna_post->name }}</td>
+                                                    <td>{{ $qna_post->hit }}</td>
+                                                    <td>{{ $qna_post->created_at }}</td>
+                                                    <td>{{ $qna_post->state? '답변 완료' : '답변 대기' }}</td>
                                                 </tr>
                                                 @endforeach
                                             </table>
                                             <div style="text-align: center;">
-                                                @if ($posts_page->currentPage() > 1)
-                                                <a href="{{ $posts_page->previousPageUrl() }}"><i class="fa fa-chevron-left" aria-hidden="true">←</i></a>
-                                                @endif
-                                                @for($i = 1; $i <=$posts_page->lastPage(); $i++)
-                                                    @if($i == $posts_page->currentPage())
-                                                    <a class="text-xl font-semibold" href="{{$posts_page->url($i)}}">{{$i}}</a>
-                                                    @else
-                                                    <a href="{{$posts_page->url($i)}}">{{$i}}</a>
-                                                    @endif
-                                                    @endfor
-                                                    @if ($posts_page->currentPage() < $posts_page->lastPage() )
-                                                        <a href="{{$posts_page->nextPageUrl()}}"><i class="fa fa-chevron-right" aria-hidden="true">→</i></a>
-                                                        @endif
+                                                {{ $qna_posts_page->onEachSide(2)->links() }}
                                             </div>
                                             @else
                                             <p>게시글이 존재 하지 않습니다.</p>
@@ -251,51 +215,39 @@ $page = 10;
                                         <div x-show="open" style="display: none;" @click="display: block;">
                                             <div class="py-1 bg-white rounded-md ring-1 ring-black ring-opacity-5">
                                                 <?php
-                                                $posts = DB::table('posts')->select(['posts.title', 'users.name', 'posts.hit', 'posts.created_at', 'posts.state'])
+                                                $iu_posts = DB::table('posts')->select(['posts.title', 'posts.id', 'users.name', 'posts.hit', 'posts.created_at', 'posts.state'])
                                                     ->leftJoin('users', 'posts.user_id', '=', 'users.id')
                                                     ->where('posts.user_id', '=', Auth::user()->id)
                                                     ->where('posts.board_id', '=', 3)
                                                     ->orderBy('posts.created_at', 'desc')
                                                     ->get();
 
-                                                $posts_page = DB::table('posts')->select(['posts.title', 'users.name', 'posts.hit', 'posts.created_at', 'posts.state'])
+                                                $iu_posts_page = DB::table('posts')->select(['posts.title', 'posts.id', 'users.name', 'posts.hit', 'posts.created_at', 'posts.state'])
                                                     ->leftJoin('users', 'posts.user_id', '=', 'users.id')
                                                     ->where('posts.user_id', '=', Auth::user()->id)
                                                     ->where('posts.board_id', '=', 3)
                                                     ->orderBy('posts.created_at', 'desc')
                                                     ->paginate($page, $columns = ['*'], $pageName = 'item_use_page');
                                                 ?>
-                                                <!-- 총 게시글 수 {{ $posts->count() }} -->
-                                                @if($posts->count() > 0)
+                                                <!-- 총 게시글 수 {{ $iu_posts->count() }} -->
+                                                @if($iu_posts->count() > 0)
                                                 <table class="table-auto">
                                                     <th>제목</th>
                                                     <th>작성자</th>
                                                     <th>조회수</th>
                                                     <th>작성일</th>
 
-                                                    @foreach ($posts_page as $post)
-                                                    <tr>
-                                                        <td>{{ $post->title }}</td>
-                                                        <td>{{ $post->name }}</td>
-                                                        <td>{{ $post->hit }}</td>
-                                                        <td>{{ $post->created_at }}</td>
+                                                    @foreach ($iu_posts_page as $iu_post)
+                                                    <tr onclick="location.href='view_item_use/{{ $iu_post->id }}'" style="cursor:hand">
+                                                        <td>{{ $iu_post->title }}</td>
+                                                        <td>{{ $iu_post->name }}</td>
+                                                        <td>{{ $iu_post->hit }}</td>
+                                                        <td>{{ $iu_post->created_at }}</td>
                                                     </tr>
                                                     @endforeach
                                                 </table>
                                                 <div style="text-align: center;">
-                                                    @if ($posts_page->currentPage() > 1)
-                                                    <a href="{{ $posts_page->previousPageUrl() }}"><i class="fa fa-chevron-left" aria-hidden="true">←</i></a>
-                                                    @endif
-                                                    @for($i = 1; $i <=$posts_page->lastPage(); $i++)
-                                                        @if($i == $posts_page->currentPage())
-                                                        <a class="text-xl font-semibold" href="{{$posts_page->url($i)}}">{{$i}}</a>
-                                                        @else
-                                                        <a href="{{$posts_page->url($i)}}">{{$i}}</a>
-                                                        @endif
-                                                        @endfor
-                                                        @if ($posts_page->currentPage() < $posts_page->lastPage() )
-                                                            <a href="{{$posts_page->nextPageUrl()}}"><i class="fa fa-chevron-right" aria-hidden="true">→</i></a>
-                                                            @endif
+                                                    {{ $iu_posts_page->onEachSide(2)->links() }}
                                                 </div>
                                                 @else
                                                 <p>게시글이 존재 하지 않습니다.</p>
