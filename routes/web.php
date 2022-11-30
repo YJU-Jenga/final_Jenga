@@ -41,7 +41,7 @@ Route::get('/mypage', function () {
 
 Route::get('/customizing', function () {
     return view('customizing');
-})->middleware(['auth', 'verified'])->name('customizing');
+})->name('customizing');
 
 // -------------------- Product --------------------
 Route::get('products', [ProductController::class, 'productList'])->name('products.list');
