@@ -43,6 +43,7 @@ use \Illuminate\Support\Facades\DB;
                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
               </div>
             </div>
+
             <div class="mt-4">
               <x-input-label for="img" :value="__('이미지')" />
 
@@ -56,8 +57,10 @@ use \Illuminate\Support\Facades\DB;
                 {{ __('작성') }}
               </x-primary-button>
             </div>
+          </form>
+
         </div>
       </div>
     </div>
   </div>
-</x-app-layout>ㄴ
+</x-app-layout>

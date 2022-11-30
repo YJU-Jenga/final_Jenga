@@ -122,7 +122,7 @@ $posts_page = DB::table('posts')->select(['posts.id', 'posts.title', 'users.name
             <th>답변여부</th>
             @foreach ($posts_page as $post)
             @if($post->secret)
-            <tr onclick="location.href='view_product_inquiry/{{ $post->id }}'" style="cursor:hand">
+            <tr onclick="location.href='secret_post/{{ $post->id }}'" style="cursor:hand">
               <td>🔒︎{{ $post->title }}</td>
               <td>{{ $post->name }}</td>
               <td>{{ $post->hit }}</td>

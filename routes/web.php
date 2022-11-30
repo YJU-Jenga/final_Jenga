@@ -10,6 +10,7 @@ use App\Http\Controllers\QAController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ItemUsePostController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\PostController;
 
  
 
@@ -128,9 +129,18 @@ Route::get('/updateok_product_inquiry/{id}', [ProductInquiryController::class, '
 Route::get('/delete_product_inquiry/{id}', [ProductInquiryController::class, 'deleteProductInquiry'])->middleware(['auth', 'verified'])->name('delete_product_inquiry');
 Route::get('/deleteck_product_inquiry/{id}', [ProductInquiryController::class, 'deleteck'])->middleware(['auth', 'verified'])->name('deleteck_product_inquiry');
 // -------------------- Product_inquiry --------------------
+
+// -------------------- Comment --------------------
 // -------------------- comment_write --------------------
 Route::get('/comment_write', [CommentController::class, 'create'])->middleware(['auth', 'verified'])->name('comment_write');
 Route::post('/comment_write', [CommentController::class, 'store'])->middleware(['auth', 'verified'])->name('comment_write');
+// -------------------- comment_write --------------------
+// -------------------- Comment --------------------
+
+// -------------------- Secret --------------------
+Route::get('/secret_post/{id}', [PostController::class, 'secretView'])->name('secret_post');
+// -------------------- Secret --------------------
+
 // <-------------------- Board_Posts -------------------->
 
 require __DIR__.'/auth.php';

@@ -21,8 +21,7 @@ class ProductInquiryController extends Controller
             ->where('posts.board_id', '=', 1)
             ->orderBy('posts.created_at', 'desc')
             ->get();
-
-        return view('board.product_inquiry', ['posts' => $posts]);
+            return view('board.product_inquiry', ['posts' => $posts]);
     }
 
     public function store(Request $request)
