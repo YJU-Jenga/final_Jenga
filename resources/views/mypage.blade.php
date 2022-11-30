@@ -73,7 +73,7 @@ $page = 10;
                                             </tr>
                                             @endforeach
                                         </table>
-                                        <div style="text-align: center;">
+                                        <div class="flex justify-center">
                                             {{ $pi_posts_page->onEachSide(2)->links() }}
                                         </div>
                                         @else
@@ -133,7 +133,7 @@ $page = 10;
                                                 </tr>
                                                 @endforeach
                                             </table>
-                                            <div style="text-align: center;">
+                                            <div class="flex justify-center">
                                                 {{ $orders_page->onEachSide(2)->links() }}
                                             </div>
                                             @else
@@ -191,7 +191,7 @@ $page = 10;
                                                 </tr>
                                                 @endforeach
                                             </table>
-                                            <div style="text-align: center;">
+                                            <div class="flex justify-center">
                                                 {{ $qna_posts_page->onEachSide(2)->links() }}
                                             </div>
                                             @else
@@ -246,7 +246,7 @@ $page = 10;
                                                     </tr>
                                                     @endforeach
                                                 </table>
-                                                <div style="text-align: center;">
+                                                <div class="flex justify-center">
                                                     {{ $iu_posts_page->onEachSide(2)->links() }}
                                                 </div>
                                                 @else

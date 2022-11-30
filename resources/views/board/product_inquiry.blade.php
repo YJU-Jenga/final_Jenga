@@ -144,7 +144,7 @@ $posts_page = DB::table('posts')->select(['posts.id', 'posts.title', 'users.name
             @endif
             @endforeach
           </table>
-          <div style="text-align: center;">
+          <div class="flex justify-center">
             {{ $posts_page->onEachSide(2)->links() }}
           </div>
           @else
