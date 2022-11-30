@@ -130,7 +130,7 @@ $posts_page = DB::table('posts')
 
                             @foreach ($posts_page as $post)
                                 @if ($post->secret)
-                                    <tr onclick="location.href='view_item_use/{{ $post->id }}'" style="cursor:hand">
+                                    <tr onclick="location.href='secret_post/{{ $post->id }}'" style="cursor:hand">
                                         <td class="text-center">🔒︎{{ $post->title }}</td>
                                         <td class="text-center">{{ $post->name }}</td>
                                         <td>{{ Carbon\Carbon::parse($post->created_at)->format('Y-m-d') }}</td>
