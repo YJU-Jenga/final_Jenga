@@ -146,19 +146,7 @@ $posts_page = DB::table('posts')->select(['posts.id', 'posts.title', 'users.name
             @endforeach
           </table>
           <div style="text-align: center;">
-            @if ($posts_page->currentPage() > 1)
-            <a href="{{ $posts_page->previousPageUrl() }}"><i class="fa fa-chevron-left" aria-hidden="true">←</i></a>
-            @endif
-            @for($i = 1; $i <=$posts_page->lastPage(); $i++)
-              @if($i == $posts_page->currentPage())
-              <a class="text-xl font-semibold" href="{{$posts_page->url($i)}}">{{$i}}</a>
-              @else
-              <a href="{{$posts_page->url($i)}}">{{$i}}</a>
-              @endif
-              @endfor
-              @if ($posts_page->currentPage() < $posts_page->lastPage() )
-                <a href="{{$posts_page->nextPageUrl()}}"><i class="fa fa-chevron-right" aria-hidden="true">→</i></a>
-                @endif
+            {{ $posts_page->onEachSide(2)->links() }}
           </div>
           @else
           <p>게시글이 존재 하지 않습니다.</p>
