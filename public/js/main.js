@@ -207,4 +207,3 @@ slide.addEventListener('mouseout', () => {
 
 
 
-

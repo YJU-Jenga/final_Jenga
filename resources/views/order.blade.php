@@ -7,8 +7,8 @@
                 </h1>
 
                 @if ($products_info->count() > 0)
-                <table class="w-full h-full text-center table-auto">
-                    <tr>
+                <table class="w-full h-full mb-3 text-center">
+                    <tr class="h-12 font-semibold text-gray-800 bg-gray-300">
                         <td class="w-1/12"></td>
                         <td class="w-5/12 ">상품명</td>
                         <td class="w-1/12 ">상품개수</td>
@@ -16,9 +16,9 @@
                     </tr>
 
                     @foreach ($products_info as $product)
-                    <tr>
+                    <tr class="h-full border-b">
                         <td class="flex justify-center">
-                            <img class="object-contain w-48 h-36" src="/storage/images/{{ $product->img }}">
+                            <img class="hidden object-contain p-3 w-52 md:table-cell" src="/storage/images/{{ $product->img }}">
                         </td>
 
                         <td>{{ $product->name }}</td>
@@ -28,48 +28,69 @@
                     @endforeach
 
                 </table>
-                <div class="w-full h-24 pt-6 pr-4 mt-10 bg-gray-50">
-                    <h1 class="text-4xl text-end">{{ $price }}₩</h1>
-                </div>
+                <h1 class="mt-6 mr-3 text-3xl text-end">{{ $price }}&nbsp₩</h1>
 
-                <div>
-                    <h1>{{ Auth::user()->name }}</h1>
-                    <h1>{{ Auth::user()->email }}</h1>
-                    <h1>{{ Auth::user()->phone }}</h1>
-                </div>
 
-                @endif
-                <form class="mt-10" method="POST" action="{{ route('order_success') }}">
-                    <!-- Postal Code -->
-                    @csrf
-                    <x-text-input type="hidden" name="dd" value="{{ json_encode($products_info) }}" />
-                    <div>
-                        <x-input-label for="Postal code" :value="__('우편번호')" />
-                        <div class="flex items-center">
-                            <x-text-input id="postal_code" class="block mt-1" type="text" placeholder="우편번호" name="postal_code" :value="old('postal_code')" required readonly />
-                            <x-primary-button class="ml-2" onclick="execDaumPostcode()">
-                                {{ __('주소 검색') }}
+
+                <div class="flex flex-col w-full h-full px-3 py-6 mt-16 bg-gray-50">
+
+                    <table>
+                        <tr class="">
+                            <td class="w-2/5">이름</td>
+                            <td>{{ Auth::user()->name }}</td>
+                        </tr>
+                        <tr>
+                            <td>이메일</td>
+                            <td>{{ Auth::user()->email }}</td>
+                        </tr>
+                        <tr>
+                            <td>휴대전화</td>
+                            <td>{{ Auth::user()->phone }}</td>
+                        </tr>
+                    </table>
+
+                    <form class="flex flex-col justify-center mt-10 " method="POST" action="{{ route('order_success') }}">
+                        <!-- Postal Code -->
+                        @csrf
+                        <x-text-input type="hidden" name="dd" value="{{ json_encode($products_info) }}" />
+                        <div class="w-full ">
+                            <x-input-label for="Postal code" :value="__('우편번호')" />
+                            <div class="">
+                                <x-text-input id="postal_code" class="mt-1 mb-1 " type="text" placeholder="우편번호" name="postal_code" :value="old('postal_code')" required readonly />
+                                <button class="px-3 py-2 text-gray-100 bg-gray-700  rounded-xl" onclick="execDaumPostcode()">
+                                    {{ __('주소 검색') }}
+                                </button>
+                            </div>
+                            <x-input-error :messages="$errors->get('postal_code')" class="mt-2" />
+                        </div>
+
+                        <!-- Address -->
+                        <div class="mt-6">
+                            <label class="block text-sm font-medium text-gray-700'" for="roadAddress">주소</label>
+                            <div class="flex flex-col">
+                                <div class="flex gap-2 mb-2 flex-flow-col">
+                                    <input type="text" id="roadAddress" class='flex-grow mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50' name="roadAddress" placeholder="도로명주소" required readonly>
+                                    <input type="text" id="extraAddress" class='flex-grow border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50' name="extraAddress" placeholder="참고주소" readonly>
+                                </div>
+
+                                <input type="text" id="detailAddress" class='border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50' name="detailAddress" placeholder="상세주소">
+
+                            </div>
+                        </div>
+                        {{-- <h1 class="mt-10 ml-2 text-3xl ">{{ $price }}&nbsp₩</h1>--}}
+                        <div class="flex items-center justify-end mt-28">
+                            <x-primary-button class="ml-4">
+                                {{ __('Order') }}
                             </x-primary-button>
                         </div>
-                        <x-input-error :messages="$errors->get('postal_code')" class="mt-2" />
-                    </div>
+                    </form>
 
-                    <!-- Address -->
-                    <div class="mt-4 ">
-                        <label class="block text-sm font-medium text-gray-700'" for="roadAddress">주소</label>
-                        <div class="flex items-center">
-                            <input type="text" id="roadAddress" class='border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50' name="roadAddress" placeholder="도로명주소" required readonly>
-                            <input type="text" id="detailAddress" class='border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50' name="detailAddress" placeholder="상세주소">
-                            <input type="text" id="extraAddress" class='border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50' name="extraAddress" placeholder="참고항목" readonly>
-                        </div>
-                    </div>
+                </div>
 
-                    <div class="flex items-center justify-end mt-4">
-                        <x-primary-button class="ml-4">
-                            {{ __('Order') }}
-                        </x-primary-button>
-                    </div>
-                </form>
+
+
+                @endif
+
             </div>
         </div>
     </div>

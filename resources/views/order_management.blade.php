@@ -1,8 +1,5 @@
 <?php
 //주문번호, 주문일, 상품이름, 가격, 총가격, 주문상태
-
-use Illuminate\Support\Facades\DB;
-
 $orders = DB::table('orders')->select(['orders.id', 'orders.user_id', 'orders.postal_code', 'orders.address', 'orders.created_at', 'products.name', 'products.price', 'count',  'state'])
     ->leftJoin('products', 'product_id', '=', 'products.id')
     ->orderBy('orders.created_at', 'desc')

@@ -27,7 +27,7 @@ class PostsTableSeeder extends Seeder
             ];
             \Illuminate\Support\Facades\DB::table('posts')->insert($post);
         }
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 150; $i++) {
             $post = [
                 'user_id' => 1,
                 'board_id' => 2,
@@ -39,7 +39,7 @@ class PostsTableSeeder extends Seeder
             ];
             \Illuminate\Support\Facades\DB::table('posts')->insert($post);
         }
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 150; $i++) {
             $post = [
                 'user_id' => 1,
                 'board_id' => 3,
