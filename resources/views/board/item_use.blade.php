@@ -133,7 +133,7 @@ $posts_page = DB::table('posts')
                                     <tr onclick="location.href='secret_post/{{ $post->id }}'" style="cursor:hand">
                                         <td class="text-center">🔒︎{{ $post->title }}</td>
                                         <td class="text-center">{{ $post->name }}</td>
-                                        <td>{{ Carbon\Carbon::parse($post->created_at)->format('Y-m-d') }}</td>
+                                        <td class="text-center">{{ Carbon\Carbon::parse($post->created_at)->format('Y-m-d') }}</td>
                                         <td class="text-center">{{ $post->hit }}</td>
                                     </tr>
                                 @else
