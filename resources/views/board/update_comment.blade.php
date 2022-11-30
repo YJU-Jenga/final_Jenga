@@ -4,18 +4,16 @@ use \Illuminate\Support\Facades\DB;
 
 $comment = $comments[0];
 ?>
-
 <x-app-layout>
-
   <div class="py-6">
     <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
       <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
         <div class="p-6 bg-white border-b border-gray-200">
-          <h2 class="mt-4 mb-8 ml-2 text-xl font-semibold leading-tight text-gray-800">
-            {{ __('댓글 수정') }}
-          </h2>
+            <h2 class="mt-4 mb-8 ml-2 text-xl font-semibold leading-tight text-gray-800">
+                {{ __('댓글 수정') }}
+            </h2>
 
-          <form method="GET" action="/updateok_comment/{{ $comment->id }}">
+            <form method="GET" action="/updateok_comment/{{ $comment->id }}">
 
             @csrf
             <div>

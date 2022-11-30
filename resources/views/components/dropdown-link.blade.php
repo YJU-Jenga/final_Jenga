@@ -24,7 +24,7 @@ switch ($width) {
 <div class="relative" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
     <div @click="open = ! open">
         {{-- {{ $trigger }} --}}
-{{-- </div>
+    {{-- </div>
 
     <div x-show="open"
             x-transition:enter="transition ease-out duration-200"
@@ -34,11 +34,11 @@ switch ($width) {
             x-transition:leave-start="transform opacity-100 scale-100"
             x-transition:leave-end="transform opacity-0 scale-95"
             class="absolute z-50 mt-2 rounded-md shadow-lg {{ $alignmentClasses }}"
-style="display: none;"
-@click="open = false">
-<div class="rounded-md ring-1 ring-black ring-opacity-5 {{ $contentClasses }}">
-    {{-- {{ $content }} --}}
-    {{-- </div>
+            style="display: none;"
+            @click="open = false">
+        <div class="rounded-md ring-1 ring-black ring-opacity-5 {{ $contentClasses }}">
+            {{-- {{ $content }} --}}
+        {{-- </div>
     </div>
 </div>  --}}
-    <a {{ $attributes->merge(['class' => 'block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out']) }}>{{ $slot }}</a>
+<a {{ $attributes->merge(['class' => 'block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out']) }}>{{ $slot }}</a>

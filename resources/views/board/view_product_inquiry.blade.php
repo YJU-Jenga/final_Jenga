@@ -54,7 +54,7 @@ $comments = DB::table('comments')
                                         <rect fill="#333332" height="3" width="4" x="21" y="12" />
                                     </g>
                                 </svg>
-                                <h1>&nbsp{{ $post->created_at }}&nbsp&nbsp&nbsp</h1>
+                                <h1>&nbsp{{ Carbon\Carbon::parse($post->created_at)->format('Y-m-d') }}&nbsp&nbsp&nbsp</h1>
                                 <svg class="w-6 h-6" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <g>
                                         <path d="M256,128c-81.9,0-145.7,48.8-224,128c67.4,67.7,124,128,224,128c99.9,0,173.4-76.4,224-126.6   C428.2,198.6,354.8,128,256,128z M256,347.3c-49.4,0-89.6-41-89.6-91.3c0-50.4,40.2-91.3,89.6-91.3s89.6,41,89.6,91.3   C345.6,306.4,305.4,347.3,256,347.3z" />
@@ -80,7 +80,7 @@ $comments = DB::table('comments')
                         @foreach ($comments as $comment)
                         <div class="p-5 ml-2 bg-gray-100 border-b-amber-500">
                             <h1>{{ $comment->name }}</h1>
-                            <h1 class="mb-3">{{ $comment->created_at }}</h1>
+                            <h1 class="mb-3">{{ Carbon\Carbon::parse($comment->created_at)->format('Y-m-d') }}</h1>
                             <div class="flex">
                                 <p class="text-red-600">✓</p>
                                 <h1 class="ml-2"> {{ $comment->content }}</h1>
@@ -128,12 +128,12 @@ $comments = DB::table('comments')
                     </x-primary-button>
                 </a>
                 @if (Auth::user()->id == $post->user_id)
-                <a href="/update_item_use/{{ $post->id }}">
+                <a href="/update_product_inquiry/{{ $post->id }}">
                     <x-primary-button class="ml-4">
                         {{ __('수정') }}
                     </x-primary-button>
                 </a>
-                <a href="/deleteck_item_use/{{ $post->id }}">
+                <a href="/deleteck_product_inquiry/{{ $post->id }}">
                     <x-primary-button class="ml-4">
                         {{ __('삭제') }}
                     </x-primary-button>

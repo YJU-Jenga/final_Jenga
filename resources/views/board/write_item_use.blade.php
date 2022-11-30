@@ -10,9 +10,9 @@ use \Illuminate\Support\Facades\DB;
     <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
       <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
         <div class="p-6 bg-white border-b border-gray-200">
-          <h2 class="mt-4 mb-8 ml-2 text-xl font-semibold leading-tight text-gray-800">
-            {{ __('사용 후기 작성') }}
-          </h2>
+            <h2 class="mt-4 mb-8 ml-2 text-xl font-semibold leading-tight text-gray-800">
+                {{ __('사용 후기 작성') }}
+            </h2>
 
           <form method="POST" action="{{ route('write_item_use') }}" enctype="multipart/form-data">
             @csrf
@@ -29,19 +29,19 @@ use \Illuminate\Support\Facades\DB;
               <textarea id="content" class="block w-full mt-1 border-gray-300 rounded-md" type="text" name="content" required></textarea>
             </div>
 
-            <div class="mt-3">
-              <x-input-label for="img" :value="__('이미지')" />
+              <div class="mt-3">
+                  <x-input-label for="img" :value="__('이미지')" />
 
-              <x-text-input type="file" id="img" class="block w-full mt-1" name="img" accept="image/*" />
+                  <x-text-input type="file" id="img" class="block w-full mt-1" name="img" accept="image/*" />
 
-              <x-input-error :messages="$errors->get('img')" class="mt-2" />
-            </div>
-
-            <div class="block mt-6" x-data="{ open: false }">
-              <div>
-                <label for="secret">비밀글 여부 </label>
-                <input type="checkbox" id="secret" name="secret" @click="open = ! open">
+                  <x-input-error :messages="$errors->get('img')" class="mt-2" />
               </div>
+
+              <div class="block mt-6" x-data="{ open: false }">
+                    <div>
+                    <label for="secret">비밀글 여부 </label>
+                    <input type="checkbox" id="secret" name="secret" @click="open = ! open">
+                </div>
               <div x-show="open" style="display: none;" @click="display: block;">
                 <x-input-label for="password" class="mt-5" :value="__('비밀번호')" />
 

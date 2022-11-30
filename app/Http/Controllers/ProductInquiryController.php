@@ -101,7 +101,7 @@ class ProductInquiryController extends Controller
             ->where('posts.id', $id)
             ->increment('posts.hit', 1); // 컬럼값 1 증가 (조회수 증가)
 
-        $posts = DB::table('posts')->select(['posts.id', 'posts.user_id', 'posts.title', 'posts.content', 'users.name', 'posts.hit', 'posts.created_at', 'posts.state', 'posts.img', 'posts.board_id'])
+        $posts = DB::table('posts')->select(['posts.id', 'posts.user_id','posts.title', 'posts.content', 'users.name', 'posts.hit', 'posts.created_at', 'posts.state', 'posts.img', 'posts.board_id'])
             ->leftJoin('users', 'posts.user_id', '=', 'users.id')
             ->where('posts.id', $id)
             ->get();

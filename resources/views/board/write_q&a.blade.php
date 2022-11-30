@@ -10,9 +10,9 @@ use \Illuminate\Support\Facades\DB;
     <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
       <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
         <div class="p-6 bg-white border-b border-gray-200">
-          <h2 class="mt-4 mb-8 ml-2 text-xl font-semibold leading-tight text-gray-800">
-            {{ __('Q&A 작성') }}
-          </h2>
+            <h2 class="mt-4 mb-8 ml-2 text-xl font-semibold leading-tight text-gray-800">
+                {{ __('Q&A 작성') }}
+            </h2>
 
           <form method="POST" action="{{ route('write_q&a') }}" enctype="multipart/form-data">
             @csrf
@@ -29,13 +29,13 @@ use \Illuminate\Support\Facades\DB;
               <textarea id="content" class="block w-full mt-1 border-gray-300 rounded-md" type="text" name="content" required></textarea>
             </div>
 
-            <div class="mt-4">
-              <x-input-label for="img" :value="__('이미지')" />
+              <div class="mt-4">
+                  <x-input-label for="img" :value="__('이미지')" />
 
-              <x-text-input type="file" id="img" class="block w-full mt-1" name="img" accept="image/*" />
+                  <x-text-input type="file" id="img" class="block w-full mt-1" name="img" accept="image/*" />
 
-              <x-input-error :messages="$errors->get('img')" class="mt-2" />
-            </div>
+                  <x-input-error :messages="$errors->get('img')" class="mt-2" />
+              </div>
 
             <div class="block mt-6" x-data="{ open: false }">
               <div>
