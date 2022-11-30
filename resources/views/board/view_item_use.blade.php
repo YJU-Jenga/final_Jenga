@@ -7,142 +7,105 @@ $post = $posts[0];
 // dd($post);
 
 $comments = DB::table('comments')
-    ->select(['comments.id', 'comments.user_id', 'comments.content', 'comments.created_at', 'users.name'])
+    ->select(['comments.id','comments.user_id', 'comments.content', 'comments.created_at', 'users.name'])
     ->leftJoin('users', 'comments.user_id', '=', 'users.id')
     ->leftJoin('posts', 'comments.post_id', '=', 'posts.id')
     ->where('comments.post_id', '=', $post->id)
     ->orderBy('posts.created_at', 'desc')
     ->get();
 ?>
-<style>
-    HTML CSSResult Skip Results Iframe EDIT ON body {
-        padding: 1.5em;
-        background: #f5f5f5
-    }
-
-    table {
-        border: 1px #a39485 solid;
-        font-size: .9em;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, .25);
-        width: 100%;
-        border-collapse: collapse;
-        border-radius: 5px;
-        overflow: hidden;
-    }
-
-    th {
-        text-align: left;
-    }
-
-    thead {
-        font-weight: bold;
-        color: #fff;
-        background: #73685d;
-    }
-
-    td,
-    th {
-        padding: 1em .5em;
-        vertical-align: middle;
-    }
-
-    td {
-        border-bottom: 1px solid rgba(0, 0, 0, .1);
-        background: #fff;
-    }
-
-    a {
-        color: #73685d;
-    }
-
-    @media all and (max-width: 768px) {
-
-        table,
-        thead,
-        tbody,
-        th,
-        td,
-        tr {
-            display: block;
-        }
-
-        th {
-            text-align: right;
-        }
-
-        table {
-            position: relative;
-            padding-bottom: 0;
-            border: none;
-            box-shadow: 0 0 10px rgba(0, 0, 0, .2);
-        }
-
-        thead {
-            float: left;
-            white-space: nowrap;
-        }
-
-        tbody {
-            overflow-x: auto;
-            overflow-y: hidden;
-            position: relative;
-            white-space: nowrap;
-        }
-
-        tr {
-            display: inline-block;
-            vertical-align: top;
-        }
-
-        th {
-            border-bottom: 1px solid #a39485;
-        }
-
-        td {
-            border-bottom: 1px solid #e5e5e5;
-        }
-
-
-    }
-</style>
 
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            {{ __('사용 후기') }}
-        </h2>
-    </x-slot>
     <div class="py-6">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <table class="table-auto" width=100% border-top=1px solid=#444444 border-collapse=collapse>
-                        <th>제목</th>
-                        <th>글쓴이</th>
-                        <th>내용</th>
-                        <th>조회수</th>
-                        <th>작성일</th>
-                        @if ($post->img != null)
-                            <th>이미지</th>
-                        @endif
-                        <tr>
-                            <td>{{ $post->title }}</td>
-                            <td>{{ $post->name }}</td>
-                            <td>{{ $post->content }}</td>
-                            <td>{{ $post->hit }}</td>
-                            <td>{{ $post->created_at }}</td>
+                    <h2 class="mt-4 mb-8 ml-2 text-xl font-semibold leading-tight text-gray-800">
+                        {{ __('사용 후기') }}
+                    </h2>
+
+                    <div class="flex flex-col ml-2">
+                        <h1 class="text-4xl">{{ $post->title }}</h1>
+                        <div class="flex justify-between mt-4 mb-2">
+                            <div class="flex">
+                                <svg class="w-5 h-5" style="enable-background:new 0 0 24 24;" version="1.1"
+                                    viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <g id="info" />
+                                    <g id="icons">
+                                        <g id="user">
+                                            <ellipse cx="12" cy="8" rx="5" ry="6" />
+                                            <path
+                                                d="M21.8,19.1c-0.9-1.8-2.6-3.3-4.8-4.2c-0.6-0.2-1.3-0.2-1.8,0.1c-1,0.6-2,0.9-3.2,0.9s-2.2-0.3-3.2-0.9    C8.3,14.8,7.6,14.7,7,15c-2.2,0.9-3.9,2.4-4.8,4.2C1.5,20.5,2.6,22,4.1,22h15.8C21.4,22,22.5,20.5,21.8,19.1z" />
+                                        </g>
+                                    </g>
+                                </svg>
+                                <h1>&nbsp{{ $post->name }}&nbsp&nbsp&nbsp</h1>
+                            </div>
+
+                            <div class="flex">
+                                <svg class="w-5 h-5" style="enable-background:new 0 0 32 32;" id="Layer_1"
+                                    version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <g id="calendar_1_">
+                                        <path
+                                            d="M29.334,3H25V1c0-0.553-0.447-1-1-1s-1,0.447-1,1v2h-6V1c0-0.553-0.448-1-1-1s-1,0.447-1,1v2H9V1   c0-0.553-0.448-1-1-1S7,0.447,7,1v2H2.667C1.194,3,0,4.193,0,5.666v23.667C0,30.806,1.194,32,2.667,32h26.667   C30.807,32,32,30.806,32,29.333V5.666C32,4.193,30.807,3,29.334,3z M30,29.333C30,29.701,29.701,30,29.334,30H2.667   C2.299,30,2,29.701,2,29.333V5.666C2,5.299,2.299,5,2.667,5H7v2c0,0.553,0.448,1,1,1s1-0.447,1-1V5h6v2c0,0.553,0.448,1,1,1   s1-0.447,1-1V5h6v2c0,0.553,0.447,1,1,1s1-0.447,1-1V5h4.334C29.701,5,30,5.299,30,5.666V29.333z"
+                                            fill="#333332" />
+                                        <rect fill="#333332" height="3" width="4" x="7"
+                                            y="12" />
+                                        <rect fill="#333332" height="3" width="4" x="7"
+                                            y="17" />
+                                        <rect fill="#333332" height="3" width="4" x="7"
+                                            y="22" />
+                                        <rect fill="#333332" height="3" width="4" x="14"
+                                            y="22" />
+                                        <rect fill="#333332" height="3" width="4" x="14"
+                                            y="17" />
+                                        <rect fill="#333332" height="3" width="4" x="14"
+                                            y="12" />
+                                        <rect fill="#333332" height="3" width="4" x="21"
+                                            y="22" />
+                                        <rect fill="#333332" height="3" width="4" x="21"
+                                            y="17" />
+                                        <rect fill="#333332" height="3" width="4" x="21"
+                                            y="12" />
+                                    </g>
+                                </svg>
+                                <h1>&nbsp{{ $post->created_at }}&nbsp&nbsp&nbsp</h1>
+                                <svg class="w-6 h-6" id="Layer_1" style="enable-background:new 0 0 512 512;"
+                                    version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <g>
+                                        <path
+                                            d="M256,128c-81.9,0-145.7,48.8-224,128c67.4,67.7,124,128,224,128c99.9,0,173.4-76.4,224-126.6   C428.2,198.6,354.8,128,256,128z M256,347.3c-49.4,0-89.6-41-89.6-91.3c0-50.4,40.2-91.3,89.6-91.3s89.6,41,89.6,91.3   C345.6,306.4,305.4,347.3,256,347.3z" />
+                                        <g>
+                                            <path
+                                                d="M256,224c0-7.9,2.9-15.1,7.6-20.7c-2.5-0.4-5-0.6-7.6-0.6c-28.8,0-52.3,23.9-52.3,53.3c0,29.4,23.5,53.3,52.3,53.3    s52.3-23.9,52.3-53.3c0-2.3-0.2-4.6-0.4-6.9c-5.5,4.3-12.3,6.9-19.8,6.9C270.3,256,256,241.7,256,224z" />
+                                        </g>
+                                    </g>
+                                </svg>
+                                <h1>&nbsp{{ $post->hit }}</h1>
+                            </div>
+
+                        </div>
+                        <hr>
+                        <div class="max-h-full pt-8 mb-20">
                             @if ($post->img != null)
-                                <td> <img src="/storage/images/{{ $post->img }}" alt="" class="w-full max-h-60">
-                                </td>
+                                <img class="mb-6" src="/storage/images/{{ $post->img }}" alt="" />
                             @endif
-                        </tr>
-                    </table>
-                    <div>
+                            <p class="">{{ $post->content }}</p>
+                        </div>
+                    </div>
+
+                    <div class="">
                         @foreach ($comments as $comment)
-                            <div>
-                                <h1>작성자 : {{ $comment->name }}</h1>
-                                <h1>내용 : {{ $comment->content }}</h1>
-                                <h1>작성일 :{{ $comment->created_at }}</h1>
+                            <div class="p-5 ml-2 bg-gray-100 border-b-amber-500">
+                                <h1>{{ $comment->name }}</h1>
+                                <h1 class="mb-3">{{ $comment->created_at }}</h1>
+                                <div class="flex">
+                                    <p class="text-red-600">✓</p>
+                                    <h1 class="ml-2"> {{ $comment->content }}</h1>
+                                </div>
                                 @if (Auth::user()->id == $comment->user_id)
                                     <form method="get" action="/comment_delete/{{ $comment->id }}">
                                         <input type="hidden" id="id" name="id"
@@ -167,7 +130,7 @@ $comments = DB::table('comments')
                         @endforeach
                     </div>
                     @auth()
-                        <div class="w-4/5 mx-auto mt-6 text-right">
+                        <div class="px-2 mx-auto mt-6 text-right">
                             <form method="post" action="/comment_write">
                                 @csrf
                                 <textarea name="content" id="content" class="w-full h-32 border border-blue-300 resize-none"
