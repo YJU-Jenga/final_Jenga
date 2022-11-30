@@ -70,7 +70,7 @@ $comments = DB::table('comments')
                                             y="12" />
                                     </g>
                                 </svg>
-                                <h1>&nbsp{{ $post->created_at }}&nbsp&nbsp&nbsp</h1>
+                                <h1>&nbsp{{ Carbon\Carbon::parse($post->created_at)->format('Y-m-d') }}&nbsp&nbsp&nbsp</h1>
                                 <svg class="w-6 h-6" id="Layer_1" style="enable-background:new 0 0 512 512;"
                                     version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve"
                                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -100,7 +100,7 @@ $comments = DB::table('comments')
                         @foreach ($comments as $comment)
                             <div class="p-5 ml-2 bg-gray-100 border-b-amber-500">
                                 <h1>{{ $comment->name }}</h1>
-                                <h1 class="mb-3">{{ $comment->created_at }}</h1>
+                                <h1 class="mb-3">{{ Carbon\Carbon::parse($comment->created_at)->format('Y-m-d') }}</h1>
                                 <div class="flex">
                                     <p class="text-red-600">✓</p>
                                     <h1 class="ml-2"> {{ $comment->content }}</h1>

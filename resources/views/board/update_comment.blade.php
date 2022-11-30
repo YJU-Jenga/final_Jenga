@@ -4,9 +4,7 @@ use \Illuminate\Support\Facades\DB;
 
 $comment = $comments[0];
 ?>
-
 <x-app-layout>
-
   <div class="py-6">
     <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
       <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
@@ -15,7 +13,7 @@ $comment = $comments[0];
                 {{ __('댓글 수정') }}
             </h2>
 
-          <form method="GET" action="/updateok_comment/{{ $comment->id }}">
+            <form method="GET" action="/updateok_comment/{{ $comment->id }}">
 
             @csrf
             <div>

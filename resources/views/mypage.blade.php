@@ -68,7 +68,7 @@ $page = 10;
                                                 <td>{{ $pi_post->title }}</td>
                                                 <td>{{ $pi_post->name }}</td>
                                                 <td>{{ $pi_post->hit }}</td>
-                                                <td>{{ $pi_post->created_at }}</td>
+                                                <td>{{ Carbon\Carbon::parse($pi_post->created_at)->format('Y-m-d') }}</td>
                                                 <td>{{ $pi_post->state? '답변 완료' : '답변 대기' }}</td>
                                             </tr>
                                             @endforeach
@@ -125,7 +125,7 @@ $page = 10;
                                                 @foreach ($orders_page as $order)
                                                 <tr>
                                                     <td>{{ $order->id }}</td>
-                                                    <td>{{ $order->created_at }}</td>
+                                                    <td>{{ Carbon\Carbon::parse($order->created_at)->format('Y-m-d') }}</td>
                                                     <td>{{ $order->name }}</td>
                                                     <td>{{ $order->price }}원</td>
                                                     <td>{{ ($order->price * $order->count)}}원</td>
@@ -186,7 +186,7 @@ $page = 10;
                                                     <td>{{ $qna_post->title }}</td>
                                                     <td>{{ $qna_post->name }}</td>
                                                     <td>{{ $qna_post->hit }}</td>
-                                                    <td>{{ $qna_post->created_at }}</td>
+                                                    <td>{{ Carbon\Carbon::parse($qna_post->created_at)->format('Y-m-d') }}</td>
                                                     <td>{{ $qna_post->state? '답변 완료' : '답변 대기' }}</td>
                                                 </tr>
                                                 @endforeach
@@ -242,7 +242,7 @@ $page = 10;
                                                         <td>{{ $iu_post->title }}</td>
                                                         <td>{{ $iu_post->name }}</td>
                                                         <td>{{ $iu_post->hit }}</td>
-                                                        <td>{{ $iu_post->created_at }}</td>
+                                                        <td>{{ Carbon\Carbon::parse($iu_post->created_at)->format('Y-m-d') }}</td>
                                                     </tr>
                                                     @endforeach
                                                 </table>

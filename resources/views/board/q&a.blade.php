@@ -130,7 +130,7 @@ $posts_page = DB::table('posts')->select(['posts.id', 'posts.title', 'users.name
             <tr onclick="location.href='view_q&a/{{ $post->id }}'" style="cursor:hand">
               <td class="text-center">🔒︎{{ $post->title }}</td>
               <td class="text-center">{{ $post->name }}</td>
-                <td class="text-center">{{ $post->created_at }}</td>
+              <td class="text-center">{{ Carbon\Carbon::parse($post->created_at)->format('Y-m-d') }}</td>
               <td class="text-center">{{ $post->hit }}</td>
 
               <td class="text-center">{{ $post->state? '답변 완료' : '답변 대기' }}</td>
@@ -139,7 +139,7 @@ $posts_page = DB::table('posts')->select(['posts.id', 'posts.title', 'users.name
             <tr onclick="location.href='view_q&a/{{ $post->id }}'" style="cursor:hand">
               <td class="text-center">{{ $post->title }}</td>
               <td class="text-center">{{ $post->name }}</td>
-              <td class="text-center">{{ $post->created_at }}</td>
+              <td class="text-center">{{ Carbon\Carbon::parse($post->created_at)->format('Y-m-d') }}</td>
               <td class="text-center">{{ $post->hit }}</td>
 
               <td class="text-center">{{ $post->state? '답변 완료' : '답변 대기' }}</td>

@@ -44,7 +44,7 @@ $posts_page = DB::table('posts')
 
     td,
     th {
-        padding: .8em .5em;
+        padding: .9em .5em;
         vertical-align: middle;
     }
 
@@ -133,14 +133,14 @@ $posts_page = DB::table('posts')
                                     <tr onclick="location.href='view_item_use/{{ $post->id }}'" style="cursor:hand">
                                         <td class="text-center">🔒︎{{ $post->title }}</td>
                                         <td class="text-center">{{ $post->name }}</td>
-                                        <td class="text-center">{{ $post->created_at }}</td>
+                                        <td>{{ Carbon\Carbon::parse($post->created_at)->format('Y-m-d') }}</td>
                                         <td class="text-center">{{ $post->hit }}</td>
                                     </tr>
                                 @else
                                     <tr onclick="location.href='view_item_use/{{ $post->id }}'" style="cursor:hand">
                                         <td class="text-center">{{ $post->title }}</td>
                                         <td class="text-center">{{ $post->name }}</td>
-                                        <td class="text-center">{{ $post->created_at }}</td>
+                                        <td class="text-center">{{ Carbon\Carbon::parse($post->created_at)->format('Y-m-d') }}</td>
                                         <td class="text-center">{{ $post->hit }}</td>
                                     </tr>
                                 @endif
