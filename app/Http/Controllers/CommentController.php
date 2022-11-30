@@ -64,4 +64,33 @@ class CommentController extends Controller
       return redirect('/item_use');
     }
   }
+  public function update(Request $request, $id){
+    $comments = DB::table('comments')
+            ->select(['comments.id', 'comments.post_id', 'comments.post_id', 'comments.content'])
+            ->leftJoin('users', 'comments.user_id', '=', 'users.id')
+            ->where('comments.id', $id)
+            ->get();
+
+        return view('board.update_comment', compact('comments'));
+  }
+  public function updateok(Request $request, $id)
+    {
+      $posts = DB::table('posts')
+      ->where('id', '=', $request->id)
+      ->update([
+        'state' => 0
+      ]);
+      $comments = DB::table('comments')
+          ->where('comments.id', $id)
+          ->update([
+              'content' => $request->content,
+      ]);
+      if ($request->board_id == 1) {
+        return redirect('/product_inquiry');
+      } else if ($request->board_id == 2) {
+        return redirect('/q&a');
+      } else {
+        return redirect('/item_use');
+      }
+    }
 }

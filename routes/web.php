@@ -138,5 +138,7 @@ Route::post('/comment_write', [CommentController::class, 'store'])->middleware([
 // <-------------------- Board_Posts -------------------->
 
 Route::get('/comment_delete/{id}', [CommentController::class, 'delete'])->middleware(['auth', 'verified'])->name('comment_delete');
+Route::get('/comment_update/{id}', [CommentController::class, 'update'])->middleware(['auth', 'verified'])->name('comment_delete');
+Route::get('/updateok_comment/{id}', [CommentController::class, 'updateok'])->middleware(['auth', 'verified'])->name('updateok_product_inquiry');
 
 require __DIR__ . '/auth.php';

@@ -153,6 +153,15 @@ $comments = DB::table('comments')
                                             {{ __('삭제') }}
                                         </x-primary-button>
                                     </form>
+                                    <form method="get" action="/comment_update/{{ $comment->id }}">
+                                        <input type="hidden" id="id" name="id"
+                                            value="{{ $post->id }}">
+                                        <input type="hidden" id="board_id" name="board_id"
+                                            value="{{ $post->board_id }}">
+                                        <x-primary-button class="ml-4">
+                                            {{ __('수정') }}
+                                        </x-primary-button>
+                                    </form>
                                 @endif
                             </div>
                         @endforeach

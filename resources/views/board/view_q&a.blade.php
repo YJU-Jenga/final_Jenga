@@ -145,13 +145,24 @@ $comments = DB::table('comments')
                                 <h1>내용 : {{ $comment->content }}</h1>
                                 <h1>작성일 :{{ $comment->created_at }}</h1>
                                 @if (Auth::user()->id == $comment->user_id)
-                                <form method="get" action="/comment_delete/{{ $comment->id }}">
-                                    <input type="hidden" id="id" name="id" value="{{ $post->id }}">
-                                    <input type="hidden" id="board_id" name="board_id" value="{{ $post->board_id }}">
-                                    <x-primary-button class="ml-4">
-                                        {{ __('삭제') }}
-                                    </x-primary-button>
-                                </form>
+                                    <form method="get" action="/comment_delete/{{ $comment->id }}">
+                                        <input type="hidden" id="id" name="id"
+                                            value="{{ $post->id }}">
+                                        <input type="hidden" id="board_id" name="board_id"
+                                            value="{{ $post->board_id }}">
+                                        <x-primary-button class="ml-4">
+                                            {{ __('삭제') }}
+                                        </x-primary-button>
+                                    </form>
+                                    <form method="get" action="/comment_update/{{ $comment->id }}">
+                                        <input type="hidden" id="id" name="id"
+                                            value="{{ $post->id }}">
+                                        <input type="hidden" id="board_id" name="board_id"
+                                            value="{{ $post->board_id }}">
+                                        <x-primary-button class="ml-4">
+                                            {{ __('수정') }}
+                                        </x-primary-button>
+                                    </form>
                                 @endif
                             </div>
                         @endforeach
