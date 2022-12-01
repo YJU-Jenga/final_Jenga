@@ -88,6 +88,11 @@ Route::middleware('auth')->group(function () {
 
     Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
 
+    Route::get('register_update', [RegisteredUserController::class, 'up'])
+                ->name('register_update'); 
+    
+    Route::post('register_update', [RegisteredUserController::class, 'update']);
+
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
 });

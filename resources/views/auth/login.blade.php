@@ -14,7 +14,7 @@
 
             <!-- Email Address -->
             <div>
-                <x-input-label for="email" :value="__('이메일')" />
+                <x-input-label for="email" :value="__('Email')" />
 
                 <x-text-input id="email" class="block w-full mt-1" type="email" name="email" :value="old('email')" required autofocus />
 
@@ -23,7 +23,7 @@
 
             <!-- Password -->
             <div class="mt-4">
-                <x-input-label for="password" :value="__('비밀번호')" />
+                <x-input-label for="password" :value="__('Password')" />
 
                 <x-text-input id="password" class="block w-full mt-1"
                                 type="password"
@@ -37,22 +37,19 @@
             <div class="block mt-4">
                 <label for="remember_me" class="inline-flex items-center">
                     <input id="remember_me" type="checkbox" class="text-indigo-600 border-gray-300 rounded shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('로그인 유지하기') }}</span>
+                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
                 </label>
             </div>
 
             <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
-                    <a class="mr-2 text-sm text-gray-600 underline hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('비밀번호를 잃어버렸나요?') }}
+                    <a class="text-sm text-gray-600 underline hover:text-gray-900" href="{{ route('password.request') }}">
+                        {{ __('Forgot your password?') }}
                     </a>
                 @endif
-                <a class="text-sm text-gray-600 underline hover:text-gray-900" href="{{ route('register') }}">
-                    {{ __('회원가입') }}
-                </a>
 
                 <x-primary-button class="ml-3">
-                    {{ __('로그인') }}
+                    {{ __('Log in') }}
                 </x-primary-button>
             </div>
         </form>

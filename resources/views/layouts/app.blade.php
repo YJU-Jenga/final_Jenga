@@ -9,7 +9,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
     @stack('styles')
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -21,19 +21,23 @@
 
         <!-- Page Heading -->
         @if (isset($header))
-            <header class="bg-white shadow">
-                <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
+        <header class="bg-white shadow">
+            <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+                {{ $header }}
+            </div>
+        </header>
         @endif
 
         <!-- Page Content -->
         <main>
             {{ $slot }}
         </main>
+        @stack('scripts')
     </div>
-    @stack('scripts')
 </body>
 
 </html>
+
+
+
+{{-- https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap --}}

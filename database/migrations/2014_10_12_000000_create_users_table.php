@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('email')->unique()->comment('사용자 이메일');
             $table->timestamp('email_verified_at')->nullable()->comment('이메일 인증');
             $table->string('password')->comment('사용자 비밀번호');
+            $table->string('phone')->comment('사용자 전화번호');
+            $table->boolean('permission')->default(false)->comment('관리자 권한');
             $table->rememberToken();
             $table->timestamps();
         });

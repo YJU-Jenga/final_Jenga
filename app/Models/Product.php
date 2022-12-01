@@ -12,7 +12,17 @@ class Product extends Model
     protected $fillable = [
         'name',
         'price',
-        'image',
         'description',
+        'stock',
+        'type',
+        'img',
     ];
+
+    public function cart() {
+        return $this->belongsTo('\App\Models\Cart');
+    }
+
+    public function order() {
+        return $this->belongsTo('\App\Models\Order');
+    }
 }
