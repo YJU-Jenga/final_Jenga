@@ -20,9 +20,9 @@
                          src="https://mblogthumb-phinf.pstatic.net/MjAyMDA0MDlfOTEg/MDAxNTg2NDMxMzk3Mzk1.-Mqd0Lonz1iJV6oOn3A1P4Rb2diLqQTrldaNQP29tswg.K1apwu2919Cnk2z46HUxu2nodpCkuDz9VVNhpLqzXqQg.PNG.arum815/%EB%94%B8%EA%B8%B03.png?type=w800">
 
                 <div class="flex flex-col w-full mb-4">
-                    <p class="mt-16 text-3xl tracking-widest text-center text-red-500 md:text-4xl">아름다운 여러분들</p>
-                    <p class="mt-8 tracking-widest text-center text-gray-800 md:text-xl text-md">우리의 머리털은 지키고</p>
-                    <p class="mt-4 tracking-widest text-center text-gray-500 md:text-xl text-md">맘뉼이의 탈모를 기원해봐요</p>
+                    <p class="mt-16 text-3xl tracking-widest text-center text-red-500 md:text-4xl">맞벌이 부부 여러분</p>
+                    <p class="mt-8 tracking-widest text-center text-gray-800 md:text-xl text-md">항상 일하면서 아이걱정 하느라 불편하셨죠</p>
+                    <p class="mt-4 tracking-widest text-center text-gray-500 md:text-xl text-md">저희가 그 걱정을 덜어드리겠습니다</p>
                 </div>
             </figure>
         </div>
@@ -46,10 +46,9 @@
                     <img class="w-3/4 h-80" src="https://t1.daumcdn.net/cfile/tistory/99D2E53C5BD1EB3F18">
 
                 <div class="flex flex-col w-full mb-4">
-                    <p class="mt-16 text-3xl tracking-widest text-center md:text-4xl">어도비 결제 못해서</p>
-                    <p class="mt-4 tracking-widest text-center text-gray-500 md:text-xl text-md">작품을 못 만들어요</p>
-                    <p class="mt-2 tracking-widest text-center text-gray-500 md:text-xl text-md">2만원만 주세요</p>
-                    <p class="mt-2 tracking-widest text-center text-gray-500 md:text-xl text-md">응애~~~~~</p>
+                    <p class="mt-16 text-3xl tracking-widest text-center md:text-4xl">저희는 항상 가성비가 먼저입니다</p>
+                    <p class="mt-2 tracking-widest text-center text-gray-500 md:text-xl text-md">거품 뺀 가격으로 모시겠습니다</p>
+                    <p class="mt-2 tracking-widest text-center text-gray-500 md:text-xl text-md">많이 사랑해주세요</p>
                 </div>
             </figure>
         </div>

@@ -124,7 +124,7 @@ $posts_page = DB::table('posts')->select(['posts.id', 'posts.title', 'users.name
             <th class="text-center">답변여부</th>
             @foreach ($posts_page as $post)
             @if($post->secret)
-            <tr onclick="location.href='view_product_inquiry/{{ $post->id }}'" style="cursor:hand">
+            <tr onclick="location.href='secret_post/{{ $post->id }}'" style="cursor:hand">
               <td class="text-center">🔒︎{{ $post->title }}</td>
               <td class="text-center">{{ $post->name }}</td>
               <td class="text-center">{{ Carbon\Carbon::parse($post->created_at)->format('Y-m-d') }}</td>

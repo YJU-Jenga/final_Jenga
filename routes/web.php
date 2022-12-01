@@ -10,6 +10,7 @@ use App\Http\Controllers\QAController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ItemUsePostController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\PostController;
 
 
 
@@ -101,7 +102,7 @@ Route::get('/write_q&a', [QAController::class, 'create'])->middleware(['auth', '
 Route::post('/write_q&a', [QAController::class, 'store'])->middleware(['auth', 'verified'])->name('write_q&a');
 
 // -------------------- Q & A View --------------------
-Route::get('/view_q&a/{id}', [QAController::class, 'viewQA'])->middleware(['auth', 'verified'])->name('viewview_q&a');
+Route::get('/view_q&a/{id}', [QAController::class, 'viewQA'])->name('view_q&a');
 
 // -------------------- Q & A Update --------------------
 Route::get('/update_q&a/{id}', [QAController::class, 'updateQA'])->middleware(['auth', 'verified'])->name('update_q&a');
@@ -137,9 +138,12 @@ Route::get('/comment_write', [CommentController::class, 'create'])->middleware([
 Route::post('/comment_write', [CommentController::class, 'store'])->middleware(['auth', 'verified'])->name('comment_write');
 // <-------------------- Board_Posts -------------------->
 
-// -------------------- Comment --------------------
 Route::get('/comment_delete/{id}', [CommentController::class, 'delete'])->middleware(['auth', 'verified'])->name('comment_delete');
 Route::get('/comment_update/{id}', [CommentController::class, 'update'])->middleware(['auth', 'verified'])->name('comment_delete');
 Route::get('/updateok_comment/{id}', [CommentController::class, 'updateok'])->middleware(['auth', 'verified'])->name('updateok_product_inquiry');
+
+// -------------------- Secret --------------------
+Route::get('/secret_post/{id}', [PostController::class, 'secretView'])->name('secret_post');
+// -------------------- Secret --------------------
 
 require __DIR__ . '/auth.php';
