@@ -39,6 +39,8 @@ class DatabaseSeeder extends Seeder
         // 상품 목록 생성
         // $this->call(ProductSeeder::class);
         // $this->call(ProductSeeder::class);
+        
+        // 브랜치 연동 테스트
 
     }
 }
