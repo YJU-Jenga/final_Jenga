@@ -168,3 +168,7 @@ Route::get('/three/mmd', function(){
 Route::get('/three/vmd', function(){
     return view('Three.vmd');
 });
+
+Route::get('/three/dat', function(){
+    return view('Three.datgui');
+});
