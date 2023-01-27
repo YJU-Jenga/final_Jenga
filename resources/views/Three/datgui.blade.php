@@ -1,3 +1,9 @@
+<?php
+$img = $img;
+
+// dd($img);
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -6,10 +12,14 @@
 		<style>
 			body { margin: 0; }
 			canvas { display: block; }
+			input { display: none; }
+
 		</style>
 	</head>
 	<body> 
-    <div id="container"></div> 
+    <div id="container">
+				<input type="text" class="file" value={{$img}}>
+		</div> 
 
 		<script type="importmap">
 			{
@@ -82,12 +92,15 @@
 			let scene, renderer, camera, stats;
 			let model, skeleton, mixer, clock;
 
+			const filepath = document.querySelector('.file').value;
+
       const params = {
 				trs: false,
 				onlyVisible: true,
 				binary: false,
 				maxTextureSize: 4096,
-				exportObjects: exportObjects
+				exportObjects: exportObjects,
+				color:0xff0000
 			};
 
 			// 초기화
@@ -143,11 +156,55 @@
         }
 				
         new GLTFLoader().load(
-    			'/storage/models/ted/ted.gltf',
+    			`/storage/customizing_models/${filepath}`,
     			function (gltf) {
             model = gltf.scene
 						scene.add(model);
-						// console.log(gltf);
+			
+
+						console.log( model.children[1]);
+						const gui = new GUI();
+
+						let h = gui.addFolder( 'Settings' );
+						h.add( params, 'trs' ).name( 'Use TRS' );
+						h.add( params, 'onlyVisible' ).name( 'Only Visible Objects' );
+						h.add( params, 'binary' ).name( 'Binary (GLB)' );
+						h.add( params, 'maxTextureSize', 2, 8192 ).name( 'Max Texture Size' ).step( 1 );
+						h.close();
+
+						h = gui.addFolder( '메시 설정' );
+						model.children.forEach((item) => {
+								let y = h.addFolder(item.name);
+								if(item.type == 'Group'){
+									item.children.forEach((mesh) => {
+										let m = y.addFolder(mesh.name);
+										m.add(mesh.scale, 'x').name('x').min(0.6).max(2).step(0.001);
+										m.add(mesh.scale, 'y').name('y').min(0.6).max(2).step(0.001);
+										m.add(mesh.scale, 'z').name('z').min(0.6).max(2).step(0.001);
+										params.color = mesh.material.color;
+										m.addColor(params, 'color').onChange(()=> {
+											mesh.material.color.set(params.color)
+										}).name('색깔');
+										m.close();
+									});
+								} else if(item.type == 'Mesh') {
+									y.add(item.scale, 'x').name('x').min(0.6).max(2).step(0.001);
+									y.add(item.scale, 'y').name('y').min(0.6).max(2).step(0.001);
+									y.add(item.scale, 'z').name('z').min(0.6).max(2).step(0.001);
+									params.color = item.material.color;
+									y.addColor(params, 'color').onChange(()=> {
+										item.material.color.set(params.color)
+									}).name('색깔');
+								}
+								
+								y.close();
+						});
+						h.close();
+
+						h = gui.addFolder( '내보내기' );
+						h.add( params, 'exportObjects' ).name( '다운로드' );
+						// h.close();
+
 
             model.traverse( function ( object ) {
               if ( object.isMesh ) object.castShadow = true;
@@ -172,18 +229,7 @@
 				// 반응형
 				window.addEventListener( 'resize', onWindowResize );
 
-        const gui = new GUI();
-
-				let h = gui.addFolder( 'Settings' );
-				h.add( params, 'trs' ).name( 'Use TRS' );
-				h.add( params, 'onlyVisible' ).name( 'Only Visible Objects' );
-				h.add( params, 'binary' ).name( 'Binary (GLB)' );
-				h.add( params, 'maxTextureSize', 2, 8192 ).name( 'Max Texture Size' ).step( 1 );
-
-				h = gui.addFolder( 'Export' );
-				h.add( params, 'exportObjects' ).name( 'Export' );
-
-				gui.open();
+        
 			}
 
       function exportObjects() {

@@ -7,7 +7,23 @@
             {{ __('인형 커스터마이징') }}
           </h2>
         </x-slot>
-        <img class="" src="https://gto.or.kr/images/img_page_ready.png" alt="image">
+        <form method="POST" action="{{ route('customizing') }}" enctype="multipart/form-data">
+            @csrf
+              <div class="mt-3">
+                  <x-input-label for="img" :value="__('인형 모델 : gltf, glb')" />
+
+                  <x-text-input type="file" id="img" class="block w-full mt-1" name="img" accept=".gltf, .glb" />
+
+                  <x-input-error :messages="$errors->get('img')" class="mt-2" />
+              </div>
+            </div>
+
+            <div class="flex items-center justify-end mt-4">
+              <x-primary-button class="ml-4">
+                {{ __('업로드') }}
+              </x-primary-button>
+            </div>
+          </form>
       </div>
     </div>
   </div>

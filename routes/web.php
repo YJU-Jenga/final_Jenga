@@ -11,6 +11,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ItemUsePostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CustomizingController;
 
  
 
@@ -142,6 +143,12 @@ Route::get('/secret_post/{id}', [PostController::class, 'secretView'])->name('se
 // -------------------- Secret --------------------
 
 // <-------------------- Board_Posts -------------------->
+
+// <-------------------- Customizing -------------------->
+Route::get('/customizing', [CustomizingController::class, 'create'])->name('customizing');
+Route::post('/customizing', [CustomizingController::class, 'store'])->name('customizing');
+
+// <-------------------- Customizing -------------------->
 
 require __DIR__.'/auth.php';
 
